@@ -4,10 +4,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 class TabsTwo extends Component{
     render(){
         let 
-        tab1 = "Main skills",
-        tab2 = "Awards",
-        tab3 = "Experience",
-        tab4 = "Education & Certification";
+        tab1 = "Specs",
+        tab2 = "Stats",
+        tab3 = "Technical Details";
         const { tabStyle } = this.props
         return(
             <div>
@@ -21,73 +20,57 @@ class TabsTwo extends Component{
                                         <Tab>{tab1}</Tab>
                                         <Tab>{tab2}</Tab>
                                         <Tab>{tab3}</Tab>
-                                        <Tab>{tab4}</Tab>
                                     </TabList>
+
+                                    
+                                    <TabPanel>
+                                       <div className="single-tab-content">
+                                           <ul>
+                                               <li>
+                                                   <b>Each crab is unique</b><br></br>
+                                                   Crabs are generated progammatically with its own traits, including species, color, accessories, and obviously DANCE MOVES ! 
+                                               </li>
+                                               <li>
+                                                   <b>Rarity matters</b><br></br>
+                                                   Some crabs are rarer than others. Special characteristics can appear on your crab, increasing its value.<br></br>5 ultra-rare golden crabs are also part of the collection.
+                                               </li>
+                                               
+                                           </ul>
+                                       </div>
+                                    </TabPanel>
 
                                     <TabPanel>
                                         <div className="single-tab-content">
                                             <ul>
                                                 <li>
-                                                    <a href="/service">User experience design <span> - UI/UX</span></a>
-                                                    Delight the user and make it work.
+                                                    <b>Number of Crabs </b> : 10 000
                                                 </li>
                                                 <li>
-                                                    <a href="/service">Web and user interface design<span> - Development</span></a>
-                                                    Websites, web experiences, ...
+                                                    <b>Crabs left to be claimed </b> : 9800
+                                                    {/* See on the contract how many are already minted here */}
                                                 </li>
+                                               
                                                 <li>
-                                                    <a href="/service">Interaction design <span> - Animation</span></a>
-                                                    I like to move it move it.
+                                                    <b>Price </b> : 0.8 ETH
                                                 </li>
+                                               
+                                                
                                             </ul>
                                         </div>
                                     </TabPanel>
 
-                                    <TabPanel>
-                                       <div className="single-tab-content">
-                                           <ul>
-                                               <li>
-                                                   <a href="/service">Awwwards.com <span>- Winner</span></a> 2019 - 2020
-                                               </li>
-                                               <li>
-                                                   <a href="/service">CSS Design Awards <span>- Winner</span></a> 2017 - 2018
-                                               </li>
-                                               <li>
-                                                   <a href="/service">Design nominees <span>- site of the day</span></a> 2013- 2014
-                                               </li>
-                                           </ul>
-                                       </div>
-                                    </TabPanel>
-
-
 
                                     <TabPanel>
                                        <div className="single-tab-content">
                                            <ul>
                                                <li>
-                                                   <a href="/service">Sr. Front-end Engineer<span> - Google</span></a> 2018 - Current
+                                                   Raving Crabs are stored as <b>ERC-721</b> tokens on the <b>Ethereum blockchain.</b>
                                                </li>
                                                <li>
-                                                   <a href="/service">Front-end Engineer<span> - Microsoft</span></a> 2017 - 2018
+                                                   Metadata is hosted decentralized on IPFS.
                                                </li>
                                                <li>
-                                                   <a href="/service">Software Engineer<span> - Alibaba </span></a> 2013- 2014
-                                               </li>
-                                           </ul>
-                                       </div>
-                                    </TabPanel>
-
-                                    <TabPanel>
-                                       <div className="single-tab-content">
-                                           <ul>
-                                               <li>
-                                                   <a href="/service">BSc In CSE<span> - ABC University, Los Angeles, CA</span></a> 2010
-                                               </li>
-                                               <li>
-                                                   <a href="/service">Diploma in Computer Science<span> - Gamma Technical Institute</span></a> 2009
-                                               </li>
-                                               <li>
-                                                   <a href="/service">Graphic Designer<span> - ABC Institute, Los Angeles, CA</span></a> 2007
+                                                   Official smart contract is : <a href="https://etherscan.io/address/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"><b>0x000000000000000000</b></a>
                                                </li>
                                            </ul>
                                        </div>

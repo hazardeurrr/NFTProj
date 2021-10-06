@@ -58,10 +58,20 @@ import Columns from "./blocks/Columns";
 import PricingTable from "./blocks/PricingTable";
 import { BrowserRouter, Switch, Route  } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import { useStore } from '../store'
+import { Provider } from 'react-redux'
+
+
 
 class Root extends Component{
     render(){
+
+        const store = useStore()
+        console.log('app launched')
+
         return(
+        <Provider store={store}>
+
             <BrowserRouter basename={'/'}>
                 <PageScrollTop>
                     <Switch>
@@ -118,6 +128,7 @@ class Root extends Component{
                     </Switch>
                 </PageScrollTop>
             </BrowserRouter>
+        </Provider>
         )
     }
 }

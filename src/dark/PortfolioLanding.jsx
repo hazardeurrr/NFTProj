@@ -10,20 +10,58 @@ import ContactThree from "../elements/contact/ContactThree";
 import PortfolioList from "../elements/portfolio/PortfolioList";
 import ServiceList from "../elements/service/ServiceList";
 import BlogContent from "../elements/blog/BlogContent";
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useSelector } from 'react-redux';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import { Timeline, TimelineEvent } from '@mailtop/horizontal-timeline'
+import CallAction from '../elements/callaction/CallAction';
+
 
 const SlideList = [
     {
         textPosition: 'text-left',
-        category: 'Welcome to my World',
+        category: 'Join the crew',
         description: '',
         buttonText: '',
         buttonLink: ''
     }
 ]
 const PortfolioLanding = () => {
-    let title = 'About Me',
-        description = 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered <a href="#">alteration</a> in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum,';
+
+    let title = 'The Collection',
+        description = 'Raving Crabs is a collection of 10 000 UNIQUE NFT collectibles on the Ethereum Blockchain. Each NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits.';
     const PostList = BlogContent.slice(0 , 3);
+
+    const connected = useSelector((state) => state.metamask_connected)
+    const chainID = useSelector((state) => state.chainID)
+    const userAddress = useSelector((state) => state.address)
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleDialogOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+    const claimCard = () => {
+        console.log('claiming')
+        if(connected && userAddress !== undefined && chainID === '0x1'){
+            // mint the NFT
+            console.log('should mint now')
+        } else {
+            handleDialogOpen()
+        }
+        
+    }
+
     return (
         <div className="active-dark">
             <Helmet pageTitle="Portfolio Landing" />
@@ -40,16 +78,17 @@ const PortfolioLanding = () => {
                                     <div className="col-lg-12">
                                         <div className={`inner ${value.textPosition}`}>
                                             {value.category ? <span>{value.category}</span> : ''}
-                                            <h1 className="title">Hi, I’m Jone Doe <br/>
+                                            <h1 className="title">RAVING CRABS <br/>
                                             <TextLoop>
-                                                <span> JS Developer.</span>
-                                                <span> UI/UX Designer.</span>
-                                                <span> Content Writter.</span>
+                                                <span> 10 000 CRABS</span>
+                                                <span> 10 SPECIES</span>
+                                                <span> 10 DANCES</span>
+                                                <span> MINT YOURS NOW</span>
+
                                             </TextLoop>{" "}
                                             </h1>
-                                            <h2>based in USA.</h2>
-                                            {value.description ? <p className="description">{value.description}</p> : ''}
-                                            {value.buttonText ? <div className="slide-btn"><a className="rn-button-style--2 btn-primary-color" href={`${value.buttonLink}`}>{value.buttonText}</a></div> : ''}
+                                            <h2>Get yours → enter The Club → RAVE</h2>
+                                            <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button>
                                         </div>
                                     </div>
                                 </div>
@@ -60,6 +99,25 @@ const PortfolioLanding = () => {
                 </div>
             </div>
             {/* End Slider Area   */} 
+
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"You are not connected to the Ethereum Network with Metamask"}</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Please connect to Metamask. If you are already connected, be sure to select Ethereum Mainnet as network on the Metamask tab.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Close
+                    </Button>
+                    </DialogActions>
+                </Dialog>
 
             {/* Start About Area */}
             <div id="about" className="fix">
@@ -81,6 +139,8 @@ const PortfolioLanding = () => {
                                         <div className="row mt--30">
                                             <TabTwo tabStyle="tab-style--1" />
                                         </div>
+                                        {/* <button style={{marginTop : 15}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
+
                                     </div>
                                 </div>
                             </div>
@@ -88,30 +148,22 @@ const PortfolioLanding = () => {
                     </div>
                 </div>
             </div>
-            
-            {/* End About Area */}
 
-            {/* Start Service Area  */}
-            <div id="service" className="fix">
-                <div className="service-area creative-service-wrapper ptb--120 bg_color--5" >
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="section-title text-center service-style--3 mb--30 mb_sm--0">
-                                    <h2 className="title">My Awesome Service</h2>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row creative-service">
-                            <div className="col-lg-12">
-                                <ServiceList item="6" column="col-lg-4 col-md-6 col-sm-6 col-12 text-left" />
+            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="inner text-center">
+                                <span>JOIN THE CLUB</span>
+                                <h2>LET THE RAVE BEGIN</h2>
+                                <button className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
-            {/* End Service Area  */} 
+            
+            {/* End About Area */}
 
             {/* Start Portfolio Area */}
             <div id="portfolio" className="fix">
@@ -121,8 +173,8 @@ const PortfolioLanding = () => {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="section-title text-center service-style--3 mb--30 mb_sm--0">
-                                        <h2 className="title">My Latest Project</h2>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                                        <h2 className="title">The Very Private Club</h2>
+                                        <p>Members only.</p>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +195,7 @@ const PortfolioLanding = () => {
             {/* End Portfolio Area */}
 
             {/* Start Blog Area */}
-            <div id="blog" className="fix">
+            {/* <div id="blog" className="fix">
                 <div className="rn-blog-area ptb--120 bg_color--5 mb-dec--30">
                     <div className="container">
                         <div className="row align-items-end">
@@ -176,16 +228,72 @@ const PortfolioLanding = () => {
                         </div>    
                     </div>    
                 </div>
-            </div>
+            </div> */}
             {/* End Blog Area */}
 
             {/* Start COntact Area */}
-            <div id="contact" className="fix">
+            {/* <div id="contact" className="fix">
                 <div className="rn-contact-area ptb--120 bg_color--1">
                     <ContactThree contactImages="/assets/images/about/about-9.jpg" contactTitle="Hire Me." />
                 </div>
-            </div>
+            </div> */}
             {/* End COntact Area */}
+
+                        {/* Start Service Area  */}
+                        <div id="service" className="fix">
+                <div className="service-area creative-service-wrapper ptb--120 bg_color--5" >
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="section-title text-center service-style--3 mb--30 mb_sm--0">
+                                    {/* <h2 className="title">My Awesome Service</h2> */}
+                                    <Timeline minEvents={5} placeholder>
+                                        <TimelineEvent
+                                            //icon={FaRegFileAlt}
+                                            title='Release'
+                                            subtitle='of Raving Crabs'
+                                        />
+                                        <TimelineEvent
+                                            color='#87a2c7'
+                                            //icon={FaRegCalendarCheck}
+                                            title='Giveaway'
+                                            subtitle='To the member of the Club'
+                                        />
+                                        <TimelineEvent
+                                            color='#9c2919'
+                                            //icon={FaBug}
+                                            title='Interaction'
+                                            subtitle='The Club becomes interactive'
+                                            // action={{
+                                            // label: 'Ver detalhes...',
+                                            // onClick: () => window.alert('Erro!')
+                                            // }}
+                                        />
+                                         <TimelineEvent
+                                            color='#87a2c7'
+                                            //icon={FaRegCalendarCheck}
+                                            title='Radio'
+                                            subtitle='The Club gets its own radio'
+                                        />
+                                         <TimelineEvent
+                                            color='#ffffff'
+                                            //icon={FaRegCalendarCheck}
+                                            title='Rave Economy'
+                                            subtitle='Get a parcel and build your own club'
+                                        />
+                                    </Timeline>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="row creative-service">
+                            <div className="col-lg-12">
+                                <ServiceList item="6" column="col-lg-4 col-md-6 col-sm-6 col-12 text-left" />
+                            </div>
+                        </div> */}
+                    </div>
+                </div>  
+            </div>
+            {/* End Service Area  */} 
 
             <FooterTwo />
             {/* Start Back To Top */}
