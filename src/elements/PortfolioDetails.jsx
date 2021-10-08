@@ -1,170 +1,150 @@
-import React, { Component } from "react";
-import PageHelmet from "../component/common/Helmet";
-import ModalVideo from 'react-modal-video';
-import {FaTwitter ,FaInstagram ,FaFacebookF , FaLinkedinIn} from "react-icons/fa";
+import React from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../component/header/Header";
-import Footer from "../component/footer/Footer";
+import Helmet from "../component/common/Helmet";
+import HeaderThree from "../component/header/HeaderThree";
+import FooterTwo from "../component/footer/FooterTwo";
+import BlogContent from "../elements/blog/BlogContent";
+import PortfolioList from "../elements/portfolio/PortfolioList";
+import { useSelector } from 'react-redux';
 
-const SocialShare = [
-    {Social: <FaFacebookF /> , link: 'https://www.facebook.com/'},
-    {Social: <FaLinkedinIn /> , link: 'https://www.linkedin.com/'},
-    {Social: <FaInstagram /> , link: 'https://www.instagram.com/'},
-    {Social: <FaTwitter /> , link: 'https://twitter.com/'},
+
+const SlideList = [
+    {
+        textPosition: 'text-left',
+        category: 'Join the crew',
+        description: '',
+        buttonText: '',
+        buttonLink: ''
+    }
 ]
+const PortfolioDetails = () => {
 
-class PortfolioDetails extends Component{
-    constructor () {
-        super()
-        this.state = {
-          isOpen: false
+    const connected = useSelector((state) => state.metamask_connected)
+    const chainID = useSelector((state) => state.chainID)
+    const userAddress = useSelector((state) => state.address)
+
+ 
+
+   
+
+    const displayClubAccess = () => {
+        if(!connected || userAddress === undefined || !chainID !== '0x1'){ // CHECKER ICI SI L'ADRESSE POSSEDE DES NFTS OU NON
+            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+            <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
+            <div style={{justifyContent:'center'}}>
+                <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
+                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Own at least 1 Raving Crab<br></br>2. Connect your wallet<br></br>3. Enter The Club<br></br>4. Rave.</p>
+                <a href="/dark-portfolio-landing" className="rn-btn">Go to main site</a>
+
+            </div>
+        </div>
         }
-        this.openModal = this.openModal.bind(this)
-    }
-    openModal () {
-        this.setState({isOpen: true})
-    }
-    render(){
-        return(
-            <React.Fragment>
-                <PageHelmet pageTitle='Portfolio Details' />
+        else {
+            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <img src="/assets/images/portfolio/the_club_opened.jpg" alt='crab rave club opened'/>
+                <div style={{justifyContent:'center'}}>
+                    <h2 style={{color: 'green'}}>ACCESS AUTHORIZED</h2>
 
-                <Header headertransparent="header--transparent" colorblack="color--black" logoname="logo.png" />
-                
-                {/* Start Breadcrump Area */}
-                <div className="rn-page-title-area pt--120 pb--190 bg_image bg_image--4"  data-black-overlay="7">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="rn-page-title text-center pt--100">
-                                    <h2 className="title theme-gradient">Getting tickets to the big show</h2>
-                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
+                </div>
+            </div>
+            }
+        }
+    
+
+    return (
+        <div className="active-dark">
+            <Helmet pageTitle="Portfolio Landing" />
+
+            <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
+
+              
+            {/* Start Portfolio Area */}
+            <div id="portfolio" className="fix">
+                <div className="portfolio-area ptb--120 bg_color--1">
+                    <div className="portfolio-sacousel-inner">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="section-title text-center service-style--3 mb--30 mb_sm--0">
+                                        <h2 className="title">The Club is for MEMBERS ONLY</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                {/* End Breadcrump Area */}
-
-                {/* Start Portfolio Details */}
-                <div className="rn-portfolio-details ptb--120 bg_color--1">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="portfolio-details">
-                                    <div className="inner">
-                                        <h2>Trydo</h2>
-                                        <p className="subtitle">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commod viverra maecenas accumsan lacus vel facilisis. ut labore et dolore magna aliqua. </p>
-
-                                        <div className="portfolio-view-list d-flex flex-wrap">
-                                            <div className="port-view">
-                                                <span>Branch</span>
-                                                <h4>Ability</h4>
-                                            </div>
-
-                                            <div className="port-view">
-                                                <span>Project Types</span>
-                                                <h4>Website</h4>
-                                            </div>
-
-                                            <div className="port-view">
-                                                <span>Program</span>
-                                                <h4>View Project</h4>
-                                            </div>
-                                        </div>
-
-                                        <div className="portfolio-share-link mt--20 pb--70 pb_sm--40">
-                                            <ul className="social-share rn-lg-size d-flex justify-content-start liststyle mt--15">
-                                                {SocialShare.map((val , i) => (
-                                                    <li key={i}><a href={`${val.link}`}>{val.Social}</a></li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div className="portfolio-thumb-inner">
-                                        <div className="thumb position-relative mb--30">
-                                            <img src="/assets/images/portfolio/portfolio-big-03.jpg" alt="Portfolio Images"/>
-                                            <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='ZOoVOfieAF8' onClose={() => this.setState({isOpen: false})} />
-                                            <button className="video-popup position-top-center" onClick={this.openModal}><span className="play-icon"></span></button>
-                                        </div>
-                                        
-                                        <div className="thumb mb--30">
-                                            <img src="/assets/images/portfolio/portfolio-big-02.jpg" alt="Portfolio Images"/>
-                                        </div>
-
-                                        <div className="thumb">
-                                            <img src="/assets/images/portfolio/portfolio-big-01.jpg" alt="Portfolio Images"/>
-                                        </div>
+                            {displayClubAccess()}
+                            
+                            <div className="row">
+                                <PortfolioList styevariation="text-center mt--40" column="col-lg-4 col-md-6 col-sm-6 col-12" item="7" />
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="view-more-btn mt--60 mt_sm--30 text-center">
+                                        <a className="rn-button-style--2 btn-solid" href="/blog"><span>View More</span></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* End Portfolio Details */}
+            </div>
+            {/* End Portfolio Area */}
 
-                {/* Start Related Work */}
-                <div className="portfolio-related-work pb--120 bg_color--1">
+            {/* Start Blog Area */}
+            {/* <div id="blog" className="fix">
+                <div className="rn-blog-area ptb--120 bg_color--5 mb-dec--30">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
+                        <div className="row align-items-end">
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div className="section-title text-center">
-                                    <span className="theme-color font--18 fontWeight600">Related Work</span>
-                                    <h2>Our More Projects</h2>
+                                    <h2>Latest News</h2>
+                                    <p>There are many variations of passages of Lorem Ipsum available, <br />but the majority have suffered alteration.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="row mt--10">
-                            {/* Start Single Portfolio */}
-                            <div className="col-lg-6 col-md-6 col-12">
-                                <div className="related-work text-center mt--30">
-                                    <div className="thumb">
-                                        <a href="/portfolio-details">
-                                            <img src="/assets/images/portfolio/related-image-01.jpg" alt="Portfolio-images"/>
-                                        </a>
-                                    </div>
-                                    <div className="inner">
-                                        <h4><a href="/portfolio-details">Digital Analysis</a></h4>
-                                        <span className="category">Technique</span>
-                                    </div>
-                                </div>
-                            </div>
-                             {/* End Single Portfolio */}
-                            {/* Start Single Portfolio */}
-                            <div className="col-lg-6 col-md-6 col-12">
-                                <div className="related-work text-center mt--30">
-                                    <div className="thumb">
-                                        <a href="/portfolio-details">
-                                            <img src="/assets/images/portfolio/related-image-02.jpg" alt="Portfolio-images"/>
-                                        </a>
-                                    </div>
-                                    <div className="inner">
-                                        <h4><a href="/portfolio-details">Plan Management</a></h4>
-                                        <span className="category">PLANNING</span>
+                        <div className="row mt--60 mt_sm--40">
+                            {PostList.map((value , i ) => (
+                                <div className="col-lg-4 col-md-6 col-12" key={i}>
+                                    <div className="blog blog-style--1">
+                                        <div className="thumbnail">
+                                            <a href="/blog-details">
+                                                <img className="w-100" src={`/assets/images/blog/blog-${value.images}.jpg`} alt="Blog Images"/>
+                                            </a>
+                                        </div>
+                                        <div className="content">
+                                            <p className="blogtype">{value.category}</p>
+                                            <h4 className="title"><a href="/blog-details">{value.title}</a></h4>
+                                            <div className="blog-btn">
+                                                <a className="rn-btn text-white" href="/blog-details">Read More</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                             {/* End Single Portfolio */}
-                        </div>
-                    </div>
+                            ))}
+                        </div>    
+                    </div>    
                 </div>
-                {/* End Related Work */}
+            </div> */}
+            {/* End Blog Area */}
 
-                {/* Start Back To Top */}
-                <div className="backto-top">
-                    <ScrollToTop showUnder={160}>
-                        <FiChevronUp />
-                    </ScrollToTop>
+            {/* Start COntact Area */}
+            {/* <div id="contact" className="fix">
+                <div className="rn-contact-area ptb--120 bg_color--1">
+                    <ContactThree contactImages="/assets/images/about/about-9.jpg" contactTitle="Hire Me." />
                 </div>
-                {/* End Back To Top */}
-                
-                <Footer />  
+            </div> */}
+            {/* End COntact Area */}
 
-
-            </React.Fragment>
-        )
-    }
+            <FooterTwo />
+            {/* Start Back To Top */}
+            <div className="backto-top">
+                <ScrollToTop showUnder={160}>
+                    <FiChevronUp />
+                </ScrollToTop>
+            </div>
+            {/* End Back To Top */}
+            
+        </div>
+    )
 }
+
 export default PortfolioDetails;

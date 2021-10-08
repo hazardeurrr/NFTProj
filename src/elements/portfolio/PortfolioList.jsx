@@ -31,6 +31,11 @@ const PortfolioListContent = [
         image: 'image-4',
         category: 'Development',
         title: 'Getting tickets to the big show'
+    },
+    {
+        image: 'image-4',
+        category: 'Development',
+        title: 'Getting tickets to the big show'
     }
 ]
 
@@ -50,13 +55,12 @@ class PortfolioList extends Component{
                             <div className="content">
                                 <div className="inner">
                                     <p>{value.category}</p>
-                                    <h4><a href="/portfolio-details">{value.title}</a></h4>
+                                    <h4>{value.title}</h4>
                                     <div className="portfolio-button">
-                                        <a className="rn-btn" href="/portfolio-details">View Details</a>
+                                        <a className="rn-btn" href="/portfolio-details">View on Opensea</a>
                                     </div>
                                 </div>
                             </div>
-                            <Link className="link-overlay" to="/portfolio-details"></Link>
                         </div>
                     </div>
                 ))}

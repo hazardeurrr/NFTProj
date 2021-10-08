@@ -17,8 +17,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useSelector } from 'react-redux';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import { Timeline, TimelineEvent } from '@mailtop/horizontal-timeline'
 import CallAction from '../elements/callaction/CallAction';
+import CustomizedTimeline from '../elements/common/Timeline';
 
 
 const SlideList = [
@@ -62,6 +62,32 @@ const PortfolioLanding = () => {
         
     }
 
+    const displayClubAccess = () => {
+        if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHECKER ICI SI L'ADRESSE POSSEDE DES NFTS OU NON
+            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+            <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
+            <div style={{justifyContent:'center'}}>
+                <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
+                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Own at least 1 Raving Crab<br></br>2. Connect your wallet<br></br>3. Enter The Club<br></br>4. Rave.</p>
+                <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button>
+
+            </div>
+        </div>
+        }
+        else {
+            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <img src="/assets/images/portfolio/the_club_opened.jpg" alt='crab rave club opened'/>
+                <div style={{justifyContent:'center'}}>
+                    <h2 style={{color: 'green'}}>ACCESS AUTHORIZED</h2>
+                    <h4><b>Only members can enter The Club.</b></h4>
+                    <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/portfolio-details">Enter The Club</a>
+
+                </div>
+            </div>
+            }
+        }
+    
+
     return (
         <div className="active-dark">
             <Helmet pageTitle="Portfolio Landing" />
@@ -81,13 +107,14 @@ const PortfolioLanding = () => {
                                             <h1 className="title">RAVING CRABS <br/>
                                             <TextLoop>
                                                 <span> 10 000 CRABS</span>
-                                                <span> 10 SPECIES</span>
-                                                <span> 10 DANCES</span>
+                                                <span> 6 SPECIES</span>
+                                                <span> 25 DANCES</span>
+                                                <span> 6 GOLDEN CRABS</span>
                                                 <span> MINT YOURS NOW</span>
 
                                             </TextLoop>{" "}
                                             </h1>
-                                            <h2>Get yours → enter The Club → RAVE</h2>
+                                            <h2>Enter The Club and RAVE</h2>
                                             <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button>
                                         </div>
                                     </div>
@@ -178,8 +205,10 @@ const PortfolioLanding = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
-                                <PortfolioList styevariation="text-center mt--40" column="col-lg-4 col-md-6 col-sm-6 col-12" item="6" />
+                            {displayClubAccess()}
+                            
+                            {/* <div className="row">
+                                <PortfolioList styevariation="text-center mt--40" column="col-lg-4 col-md-6 col-sm-6 col-12" item="7" />
                             </div>
                             <div className="row">
                                 <div className="col-lg-12">
@@ -187,7 +216,7 @@ const PortfolioLanding = () => {
                                         <a className="rn-button-style--2 btn-solid" href="/blog"><span>View More</span></a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -246,42 +275,10 @@ const PortfolioLanding = () => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="section-title text-center service-style--3 mb--30 mb_sm--0">
-                                    {/* <h2 className="title">My Awesome Service</h2> */}
-                                    <Timeline minEvents={5} placeholder>
-                                        <TimelineEvent
-                                            //icon={FaRegFileAlt}
-                                            title='Release'
-                                            subtitle='of Raving Crabs'
-                                        />
-                                        <TimelineEvent
-                                            color='#87a2c7'
-                                            //icon={FaRegCalendarCheck}
-                                            title='Giveaway'
-                                            subtitle='To the member of the Club'
-                                        />
-                                        <TimelineEvent
-                                            color='#9c2919'
-                                            //icon={FaBug}
-                                            title='Interaction'
-                                            subtitle='The Club becomes interactive'
-                                            // action={{
-                                            // label: 'Ver detalhes...',
-                                            // onClick: () => window.alert('Erro!')
-                                            // }}
-                                        />
-                                         <TimelineEvent
-                                            color='#87a2c7'
-                                            //icon={FaRegCalendarCheck}
-                                            title='Radio'
-                                            subtitle='The Club gets its own radio'
-                                        />
-                                         <TimelineEvent
-                                            color='#ffffff'
-                                            //icon={FaRegCalendarCheck}
-                                            title='Rave Economy'
-                                            subtitle='Get a parcel and build your own club'
-                                        />
-                                    </Timeline>
+                                    <h2 className="title">Roadmap</h2>
+
+                                    <CustomizedTimeline />
+                                    
                                 </div>
                             </div>
                         </div>
