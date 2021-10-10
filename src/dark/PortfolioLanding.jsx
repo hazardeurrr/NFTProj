@@ -19,6 +19,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CallAction from '../elements/callaction/CallAction';
 import CustomizedTimeline from '../elements/common/Timeline';
+import { FiCheck } from "react-icons/fi";
+import ModalVideo from 'react-modal-video';
+import Sound from 'react-sound'
+import CrabLoopMP3 from '../../public/assets/music/crab_loop.mp3'
+import CounterOne from "../elements/counters/CounterOne";
 
 
 const SlideList = [
@@ -41,6 +46,7 @@ const PortfolioLanding = () => {
     const userAddress = useSelector((state) => state.address)
 
     const [open, setOpen] = React.useState(false);
+    const [videoOpen, setVideoOpen] = React.useState(false);
 
     const handleDialogOpen = () => {
         setOpen(true);
@@ -86,10 +92,34 @@ const PortfolioLanding = () => {
             </div>
             }
         }
+
+    const handleSongLoading = () => {
+
+    }
+
+    const handleSongPlaying = (e) => {
+        setStatusPlaying(e.position)
+    }
+
+    const handleSongFinishedPlaying = () => {
+        setStatusPlaying(0)
+    }
+
+    const [statusPlaying, setStatusPlaying] = React.useState(0)
     
 
     return (
+
+        
         <div className="active-dark">
+            <Sound
+                url={CrabLoopMP3}
+                playStatus={Sound.status.PLAYING}
+                position={statusPlaying} /* in milliseconds */
+                // onLoading={handleSongLoading}
+                onPlaying={handleSongPlaying}
+                onFinishedPlaying={handleSongFinishedPlaying}
+            />
             <Helmet pageTitle="Portfolio Landing" />
 
             <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
@@ -106,10 +136,11 @@ const PortfolioLanding = () => {
                                             {value.category ? <span>{value.category}</span> : ''}
                                             <h1 className="title">RAVING CRABS <br/>
                                             <TextLoop>
-                                                <span> 10 000 CRABS</span>
-                                                <span> 6 SPECIES</span>
-                                                <span> 25 DANCES</span>
-                                                <span> 6 GOLDEN CRABS</span>
+                                                <span> 6666 CRABS</span>
+                                                <span> 4 SPECIES</span>
+                                                <span> 4 GOLDEN</span>
+                                                <span> 20 FACTIONS</span>
+                                                <span> 20 DANCES</span>
                                                 <span> MINT YOURS NOW</span>
 
                                             </TextLoop>{" "}
@@ -146,8 +177,67 @@ const PortfolioLanding = () => {
                     </DialogActions>
                 </Dialog>
 
-            {/* Start About Area */}
-            <div id="about" className="fix">
+           
+                {/* Start About Area  */}
+                <div className="rn-about-area ptb--120 bg_color--1">
+                    <div className="container">
+                        <div className="row row--35 align-items-center">
+                            <div className="col-lg-6 order-2 order-lg-1">
+                                <div className="about-inner inner">
+                                    <div className="section-title">
+                                        {/* <h3 className="title">More than just a NFT</h3> */}
+                                        {/* <p className="description">More than just a NFT</p> */}
+                                    </div>
+                                    <div className="mt--30">
+                                        <h3 style={{fontSize: 30}}>More than just a NFT</h3>
+                                        <ul className="list-style--1">
+                                            <li style={{fontSize: 20}}><FiCheck /> Each crab is unique</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Show your moves on the dancefloor</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Rave with the community</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Represent your faction</li>
+                                        </ul>
+                                    </div>
+                                    <div className="mt--30">
+                                        <h3 style={{fontSize: 30}}>Become a member</h3>
+                                        <ul className="list-style--1">
+                                            <li style={{fontSize: 20}}><FiCheck /> <b>Enter The Club</b> and RAVE</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Earn exclusive <b>giveaways</b>*</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Battle for your faction*</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Get a <b>FREE Pixel Crab</b> NFT mint*<br></br><span style={{marginLeft: 25}}>(0.3 ETH value)</span></li>
+                                        </ul>
+                                    </div>
+                                    <p style={{color: 'gray', fontSize: 11}}>*See Roadap below</p>
+                                </div>
+                            </div>
+                            <div className="col-lg-6 order-1 order-lg-2">
+                                <div className="thumbnail position-relative">
+                                    <img className="w-100" src="/assets/images/about/about-3.png" alt="About Images"/>
+                                        <ModalVideo channel='youtube' isOpen={videoOpen} videoId='ZOoVOfieAF8' onClose={() => setVideoOpen(false)} />
+                                    <button className="video-popup position-top-center theme-color" onClick={() => setVideoOpen(true)}><span className="play-icon"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/* End About Area  */}
+
+            
+            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="inner text-center">
+                                <span>JOIN THE CLUB</span>
+                                <h2>LET THE RAVE BEGIN</h2>
+                                <button className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             {/* Start About Area */}
+             <div id="about" className="fix">
                 <div className="about-area ptb--120  bg_color--1">
                     <div className="about-wrapper">
                         <div className="container">
@@ -174,23 +264,23 @@ const PortfolioLanding = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
+            {/* End About Area */}
 
-            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="inner text-center">
-                                <span>JOIN THE CLUB</span>
-                                <h2>LET THE RAVE BEGIN</h2>
-                                <button className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
+            {/* Start CounterUp Area */}
+            <div className="rn-counterup-area pt--25 pb--110 bg_color--1">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="section-title text-center">
+                                    <h3 className="fontWeight500">Join the community</h3>
+                                </div>
                             </div>
                         </div>
+                        <CounterOne />
                     </div>
                 </div>
-            </div>
-            
-            {/* End About Area */}
+                {/* End CounterUp Area */}
 
             {/* Start Portfolio Area */}
             <div id="portfolio" className="fix">

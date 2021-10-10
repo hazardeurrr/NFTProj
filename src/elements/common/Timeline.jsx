@@ -18,7 +18,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          November 1st 2021
+          November 10th 2021
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector />
@@ -29,11 +29,11 @@ export default function CustomizedTimeline() {
         </TimelineSeparator>
         <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span" color="white">
-            Release
+            Raving Crabs Release
           </Typography>
           <br></br>
           <Typography variant="subtitle" component="span" color="gray">
-            10 000 Raving Crabs to be minted
+            6666 Raving Crabs to be minted
           </Typography>
         </TimelineContent>
       </TimelineItem>
@@ -43,7 +43,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          2500 mints
+          1100 mints
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector />
@@ -57,43 +57,19 @@ export default function CustomizedTimeline() {
             Giveaway
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
-            For Club members
+            For Club Members<br></br>
+            (every week for 10 weeks)
           </Typography>
         </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
-          variant="body2"
-          color="gray"
-        >
-          5000 mints
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot color="secondary">
-            {/* <HotelIcon /> */}
-          </TimelineDot>
-          <TimelineConnector/>
+      </TimelineItem>      
 
-       
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span" color="white">
-            Interaction
-          </Typography><br></br>
-          <Typography variant="subtitle" component="span" color="gray">
-            The Club becomes interactive
-          </Typography>
-        </TimelineContent>
-      </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent
           sx={{ m: 'auto 0' }}
           variant="body2"
           color="gray"
         >
-          7500 mints
+          2200 mints
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector/>
@@ -119,7 +95,61 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          10 000 mints
+          4444 mints
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector />
+          <TimelineDot color="secondary">
+            {/* <HotelIcon /> */}
+          </TimelineDot>
+          <TimelineConnector/>
+
+       
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span" color="white">
+            Interaction
+          </Typography><br></br>
+          <Typography variant="subtitle" component="span" color="gray">
+            The Club becomes interactive<br></br>Rave together
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: 'auto 0' }}
+          variant="body2"
+          color="gray"
+        >
+          6666 mints
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector />
+          <TimelineDot color="secondary">
+            {/* <LaptopMacIcon /> */}
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span" color="white">
+            Crab battle
+          </Typography><br></br>
+          <Typography variant="subtitle" component="span" color="gray">
+            Represent your faction<br></br>
+            Get rewarded if you win
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: 'auto 0' }}
+          align="right"
+          variant="body2"
+          color="gray"
+        >
+          January 10th 2021
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector/>
@@ -131,28 +161,11 @@ export default function CustomizedTimeline() {
         </TimelineSeparator>
         <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span" color="white">
-            More interaction
+            Pixel Crabs NFTs
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
-            Rave together
-          </Typography>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineConnector/>
-          <TimelineDot color="secondary">
-            {/* <RepeatIcon /> */}
-          </TimelineDot>
-          <TimelineConnector />
-        
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span" color="white">
-            New world & new economy...
-          </Typography><br></br>
-          <Typography variant="subtitle" component="span" color="gray">
-            More than just NFTs...
+            Pixels know how to rave as well !<br></br>
+            Free mint for every Raving Crab owner
           </Typography>
         </TimelineContent>
       </TimelineItem>

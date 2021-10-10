@@ -2,7 +2,7 @@ import React, { Component , Fragment } from "react";
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 
-
+import { FaTwitter, FaDiscord } from 'react-icons/fa'
 
 
 class CounterOne extends Component{
@@ -17,17 +17,13 @@ class CounterOne extends Component{
     render(){
         let Data = [
             {
-                countNum : 199,
-                countTitle: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those.',
+                countNum : <FaTwitter />,
+                countTitle: 'Our Twitter',
             },
             {
-                countNum : 575,
-                countTitle: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those.',
-            },
-            {
-                countNum : 69,
-                countTitle: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those.',
-            },
+                countNum : <FaDiscord />,
+                countTitle: 'Our Discord',
+            }
         ];
 
         return(
