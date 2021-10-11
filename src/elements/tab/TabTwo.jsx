@@ -51,7 +51,7 @@ class TabsTwo extends Component{
                                                 </li>
                                                
                                                 <li>
-                                                    <b>Price </b> : 0.06 ETH
+                                                    <b>Price </b> : 0.06 ETH for the first 2222 mints / 0.07 ETH otherwise
                                                 </li>
                                                
                                                 

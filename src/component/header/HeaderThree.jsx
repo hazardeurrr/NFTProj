@@ -26,9 +26,7 @@ const mapStateToProps = state => {
 }
 
 const SocialShare = [
-    {Social: <FaFacebookF /> , link: 'https://www.facebook.com/'},
     {Social: <FaDiscord /> , link: 'https://www.discord.gg/'},
-    {Social: <FaInstagram /> , link: 'https://www.instagram.com/'},
     {Social: <FaTwitter /> , link: 'https://twitter.com/'},
 ]
 class HeaderThree extends Component{

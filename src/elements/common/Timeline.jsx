@@ -43,7 +43,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          1100 mints
+          1111 mints
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector />
@@ -58,7 +58,7 @@ export default function CustomizedTimeline() {
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
             For Club Members<br></br>
-            (every week for 10 weeks)
+            <b>10 Raving Crabs to win</b>
           </Typography>
         </TimelineContent>
       </TimelineItem>      
@@ -69,7 +69,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          2200 mints
+          2222 mints
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector/>
@@ -137,7 +137,7 @@ export default function CustomizedTimeline() {
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
             Represent your faction<br></br>
-            Get rewarded if you win
+            <b>10 ETH Prize Pool</b>
           </Typography>
         </TimelineContent>
       </TimelineItem>
@@ -149,7 +149,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          January 10th 2021
+          Q1 2022
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector/>
@@ -165,7 +165,7 @@ export default function CustomizedTimeline() {
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
             Pixels know how to rave as well !<br></br>
-            Free mint for every Raving Crab owner
+            <b>FREE MINT</b> for every Raving Crab owner
           </Typography>
         </TimelineContent>
       </TimelineItem>

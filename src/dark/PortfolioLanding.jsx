@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
 import Helmet from "../component/common/Helmet";
@@ -19,12 +19,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CallAction from '../elements/callaction/CallAction';
 import CustomizedTimeline from '../elements/common/Timeline';
+import ModelCard from '../elements/common/ModelCard';
 import { FiCheck } from "react-icons/fi";
 import ModalVideo from 'react-modal-video';
 import Sound from 'react-sound'
 import CrabLoopMP3 from '../../public/assets/music/crab_loop.mp3'
 import CounterOne from "../elements/counters/CounterOne";
-
+import {FaTwitter, FaDiscord} from 'react-icons/fa';
+import Portfolio from "../component/HomeLayout/homeOne/Portfolio";
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 const SlideList = [
     {
@@ -74,7 +77,7 @@ const PortfolioLanding = () => {
             <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
             <div style={{justifyContent:'center'}}>
                 <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
-                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Own at least 1 Raving Crab<br></br>2. Connect your wallet<br></br>3. Enter The Club<br></br>4. Rave.</p>
+                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
                 <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button>
 
             </div>
@@ -92,6 +95,8 @@ const PortfolioLanding = () => {
             </div>
             }
         }
+
+  
 
     const handleSongLoading = () => {
 
@@ -206,7 +211,7 @@ const PortfolioLanding = () => {
                                             <li style={{fontSize: 20}}><FiCheck /> Get a <b>FREE Pixel Crab</b> NFT mint*<br></br><span style={{marginLeft: 25}}>(0.3 ETH value)</span></li>
                                         </ul>
                                     </div>
-                                    <p style={{color: 'gray', fontSize: 11}}>*See Roadap below</p>
+                                    <p style={{color: 'gray', fontSize: 11}}>*See Roadmap below</p>                                   
                                 </div>
                             </div>
                             <div className="col-lg-6 order-1 order-lg-2">
@@ -221,20 +226,49 @@ const PortfolioLanding = () => {
                 </div>
             {/* End About Area  */}
 
-            
-            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="inner text-center">
-                                <span>JOIN THE CLUB</span>
-                                <h2>LET THE RAVE BEGIN</h2>
-                                <button className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
+
+            {/* Start About Area */}
+            <div id="about" className="fix">
+                <div className="about-area ptb--120  bg_color--1">
+                    <div className="about-wrapper">
+                        <div className="container">
+                            <div className="row row--35 align-items-center">
+                                <div className="col-lg-5">
+                                    <div style={{height: 300}}>
+                                        <ModelCard url="/crab_1.glb" />
+                                    </div>
+                                </div>
+                                <div className="col-lg-7">
+                                    <div className="about-inner inner">
+                                        <div className="section-title">
+                                            <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
+                                            <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
+                                            <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
+                                            <br></br>
+                                            <h5 style={{fontSize: 20}}>1200 Crabs left @0.06Ξ</h5>
+
+                                            <ProgressBar striped variant="danger" now={80} />
+                                        </div>
+                                        
+                                        <button style={{marginTop : 40, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button>
+
+                                        {/* <button style={{marginTop : 15}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>         
+
+   
+
+           
+            
+            
+           
+            
 
              {/* Start About Area */}
              <div id="about" className="fix">
@@ -267,20 +301,21 @@ const PortfolioLanding = () => {
             </div>            
             {/* End About Area */}
 
-            {/* Start CounterUp Area */}
-            <div className="rn-counterup-area pt--25 pb--110 bg_color--1">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="section-title text-center">
-                                    <h3 className="fontWeight500">Join the community</h3>
-                                </div>
+            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120 ">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="inner text-center">
+                                <span>JOIN THE CLUB</span>
+                                <h2>LET THE RAVE BEGIN</h2>
+                                <button className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
                             </div>
                         </div>
-                        <CounterOne />
                     </div>
                 </div>
-                {/* End CounterUp Area */}
+            </div>
+
+       
 
             {/* Start Portfolio Area */}
             <div id="portfolio" className="fix">
@@ -357,6 +392,22 @@ const PortfolioLanding = () => {
                 </div>
             </div> */}
             {/* End COntact Area */}
+
+            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120 bg_color--1">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="inner text-center">
+                                <h2>JOIN THE COMMUNITY</h2>
+                                <div style={{display: 'flex', alignItems:'center', justifyContent:'center'}}>
+                                    <button style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></button>
+                                    <button style={{marginLeft: 10}} className="rn-button-style--2"><span><FaTwitter /> Twitter</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                         {/* Start Service Area  */}
                         <div id="service" className="fix">
