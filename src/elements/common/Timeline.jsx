@@ -137,7 +137,7 @@ export default function CustomizedTimeline() {
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
             Represent your faction<br></br>
-            <b>10 ETH Prize Pool</b>
+            <b>20 ETH Prize Pool</b>
           </Typography>
         </TimelineContent>
       </TimelineItem>
@@ -166,6 +166,34 @@ export default function CustomizedTimeline() {
           <Typography variant="subtitle" component="span" color="gray">
             Pixels know how to rave as well !<br></br>
             <b>FREE MINT</b> for every Raving Crab owner
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: 'auto 0' }}
+          align="right"
+          variant="body2"
+          color="gray"
+        >
+          Q2 2022
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector/>
+          <TimelineDot color="secondary">
+            {/* <RepeatIcon /> */}
+          </TimelineDot>
+          <TimelineConnector />
+        
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span" color="white">
+            The Raving Crabs Festival
+          </Typography><br></br>
+          <Typography variant="subtitle" component="span" color="gray">
+            3 stages, 1 message : RAVE<br></br>
+            An online festival for Raving Crab owners
           </Typography>
         </TimelineContent>
       </TimelineItem>

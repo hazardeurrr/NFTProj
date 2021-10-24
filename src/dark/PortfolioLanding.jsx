@@ -28,6 +28,9 @@ import CounterOne from "../elements/counters/CounterOne";
 import {FaTwitter, FaDiscord} from 'react-icons/fa';
 import Portfolio from "../component/HomeLayout/homeOne/Portfolio";
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import FourCrabs from '../elements/common/FourCrabs';
+import ReactPlayer from 'react-player'
+
 
 const SlideList = [
     {
@@ -40,8 +43,8 @@ const SlideList = [
 ]
 const PortfolioLanding = () => {
 
-    let title = 'The Collection',
-        description = 'Raving Crabs is a collection of 10 000 UNIQUE NFT collectibles on the Ethereum Blockchain. Each NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits.';
+    let title = 'The Collection',   
+        description = 'Raving Crabs is a collection of 10 000 UNIQUE NFT collectibles on the Ethereum Blockchain.\nEach NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits. \n Our main goal is to build a strong and engaged community who loves memes and music. ';
     const PostList = BlogContent.slice(0 , 3);
 
     const connected = useSelector((state) => state.metamask_connected)
@@ -78,7 +81,7 @@ const PortfolioLanding = () => {
             <div style={{justifyContent:'center'}}>
                 <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
                 <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
-                <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button>
+                {/* <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
 
             </div>
         </div>
@@ -144,14 +147,15 @@ const PortfolioLanding = () => {
                                                 <span> 6666 CRABS</span>
                                                 <span> 4 SPECIES</span>
                                                 <span> 4 GOLDEN</span>
-                                                <span> 20 FACTIONS</span>
-                                                <span> 20 DANCES</span>
+                                                <span> 25 FACTIONS</span>
+                                                <span> +15 DANCES</span>
+                                                <span> 1 FESTIVAL</span>
                                                 <span> MINT YOURS NOW</span>
 
                                             </TextLoop>{" "}
                                             </h1>
                                             <h2>Enter The Club and RAVE</h2>
-                                            <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button>
+                                            {/* <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
                                         </div>
                                     </div>
                                 </div>
@@ -208,17 +212,24 @@ const PortfolioLanding = () => {
                                             <li style={{fontSize: 20}}><FiCheck /> <b>Enter The Club</b> and RAVE</li>
                                             <li style={{fontSize: 20}}><FiCheck /> Earn exclusive <b>giveaways</b>*</li>
                                             <li style={{fontSize: 20}}><FiCheck /> Battle for your faction*</li>
-                                            <li style={{fontSize: 20}}><FiCheck /> Get a <b>FREE Pixel Crab</b> NFT mint*<br></br><span style={{marginLeft: 25}}>(0.3 ETH value)</span></li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Get a <b>FREE Pixel Crab</b> NFT mint*<br></br><span style={{marginLeft: 25}}>(0.04 ETH value)</span></li>
                                         </ul>
                                     </div>
-                                    <p style={{color: 'gray', fontSize: 11}}>*See Roadmap below</p>                                   
+                                    <p style={{color: 'gray', fontSize: 11}}>*See Roadmap below</p>      
+                                    <div className="mt--30">
+                                        <h3 style={{fontSize: 30}}>Rave at our festival</h3>
+                                        <ul className="list-style--1">
+                                            <li style={{fontSize: 20}}><FiCheck /> Own a crab to get access to the Raving Crab Festival</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> An online event <b>ONLY FOR THE COMMUNITY</b></li>
+                                            <li style={{fontSize: 20}}><FiCheck /> 3 stages, 1 message : <b>RAVE</b></li>
+                                        </ul>
+                                    </div>                             
                                 </div>
                             </div>
                             <div className="col-lg-6 order-1 order-lg-2">
-                                <div className="thumbnail position-relative">
-                                    <img className="w-100" src="/assets/images/about/about-3.png" alt="About Images"/>
-                                        <ModalVideo channel='youtube' isOpen={videoOpen} videoId='ZOoVOfieAF8' onClose={() => setVideoOpen(false)} />
-                                    <button className="video-popup position-top-center theme-color" onClick={() => setVideoOpen(true)}><span className="play-icon"></span></button>
+                                <div className="thumbnail position-relative" style={{marginTop: -100}}>
+                                        <div style={{height: 300, width:'100%'}}><ModelCard url="/958.glb" dance={2} intensity={0.5}/></div>
+                                        <div style={{height: 300, width:'100%'}}><ModelCard url="/3104.glb" dance={2} intensity={0.3}/></div>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +246,7 @@ const PortfolioLanding = () => {
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
                                     <div style={{height: 300}}>
-                                        <ModelCard url="/crab_1.glb" />
+                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={0.85}/>
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
@@ -245,14 +256,12 @@ const PortfolioLanding = () => {
                                             <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
                                             <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
                                             <br></br>
-                                            <h5 style={{fontSize: 20}}>1200 Crabs left @0.06Ξ</h5>
+                                            <h5 style={{fontSize: 20}}>2222 Crabs left @0.06Ξ</h5>
 
-                                            <ProgressBar striped variant="danger" now={80} />
+                                            <ProgressBar striped variant="danger" now={0} />
                                         </div>
                                         
-                                        <button style={{marginTop : 40, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button>
-
-                                        {/* <button style={{marginTop : 15}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
+                                        {/* <button style={{marginTop : 40, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
 
                                     </div>
                                 </div>
@@ -278,7 +287,22 @@ const PortfolioLanding = () => {
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
                                     <div className="thumbnail">
-                                        <img className="w-100" src="/assets/images/about/about-8.jpg" alt="About Images"/>
+                                        <div style={{height: 300}}>
+                                            <ModelCard url="/5052.glb" dance={4} intensity={0.3}/>
+                                        </div>
+                                        <div style={{height: 300, marginTop: -75}}>
+                                            <ModelCard url="/4078.glb" dance={4} intensity={0.3}/>
+                                        </div>
+                                        {/* <div style={{height: 655, width:500}}>
+                                        <ReactPlayer
+                                            url= 'assets/video/twocrabs.mp4'
+                                            playing={true}
+                                            width='100%'
+                                            height='100%'
+                                            controls = {false}
+                                        />
+                                        </div> */}
+                                        {/* <img className="w-100" src="/assets/images/about/about-8.jpg" alt="About Images"/> */}
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
@@ -308,7 +332,7 @@ const PortfolioLanding = () => {
                             <div className="inner text-center">
                                 <span>JOIN THE CLUB</span>
                                 <h2>LET THE RAVE BEGIN</h2>
-                                <button className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
+                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
                             </div>
                         </div>
                     </div>
