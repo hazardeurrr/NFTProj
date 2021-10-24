@@ -280,28 +280,29 @@ const PortfolioLanding = () => {
             
 
              {/* Start About Area */}
-             <div id="about" className="fix">
+            <div id="about" className="fix">
                 <div className="about-area ptb--120  bg_color--1">
                     <div className="about-wrapper">
                         <div className="container">
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
                                     <div className="thumbnail">
-                                        <div style={{height: 300}}>
+                                        {/* <div style={{height: 300}}>
                                             <ModelCard url="/5052.glb" dance={4} intensity={0.3}/>
                                         </div>
                                         <div style={{height: 300, marginTop: -75}}>
                                             <ModelCard url="/4078.glb" dance={4} intensity={0.3}/>
-                                        </div>
-                                        {/* <div style={{height: 655, width:500}}>
+                                        </div> */}
+                                        <div style={{height: 655, width:500}}>
                                         <ReactPlayer
-                                            url= 'assets/video/twocrabs.mp4'
+                                            url= 'assets/video/videocrab.mp4'
                                             playing={true}
+                                            loop={true}
                                             width='100%'
                                             height='100%'
                                             controls = {false}
                                         />
-                                        </div> */}
+                                        </div>
                                         {/* <img className="w-100" src="/assets/images/about/about-8.jpg" alt="About Images"/> */}
                                     </div>
                                 </div>
@@ -324,7 +325,7 @@ const PortfolioLanding = () => {
                 </div>
             </div>            
             {/* End About Area */}
-
+           
             <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120 ">
                 <div className="container">
                     <div className="row">

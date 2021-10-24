@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d173bc63.chunk.css",
+    "main.js": "/static/js/main.a4022573.chunk.js",
+    "main.js.map": "/static/js/main.a4022573.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.a5183b1c.chunk.css": "/static/css/2.a5183b1c.chunk.css",
+    "static/js/2.8b7b26ae.chunk.js": "/static/js/2.8b7b26ae.chunk.js",
+    "static/js/2.8b7b26ae.chunk.js.map": "/static/js/2.8b7b26ae.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bb2b5e25c22fe6eb8de50a5587bf9db9.js": "/precache-manifest.bb2b5e25c22fe6eb8de50a5587bf9db9.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.a5183b1c.chunk.css.map": "/static/css/2.a5183b1c.chunk.css.map",
+    "static/css/main.d173bc63.chunk.css.map": "/static/css/main.d173bc63.chunk.css.map",
+    "static/media/crab_loop.mp3": "/static/media/crab_loop.d688950d.mp3",
+    "static/media/index.scss": "/static/media/slick.f97e3bbf.svg"
+  }
+}

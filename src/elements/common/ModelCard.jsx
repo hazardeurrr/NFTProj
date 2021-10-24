@@ -41,7 +41,6 @@ function Model(props) {
   return <primitive object={scene} />;
 }
 
-
 const ModelCard = (props) => {
 
  
@@ -52,11 +51,11 @@ const ModelCard = (props) => {
       {/* <ambientLight intensity={1} /> */}
       
       <Suspense fallback={null}>
-        <Stage contactShadow="false" shadows="false" intensity={props.intensity}>
+        <Stage environment="forest" contactShadow={false} shadows={false} contactShadowOpacity={0} intensity={props.intensity}>
           <Model url={props.url} dance={props.dance}/>
         </Stage>
       </Suspense>
-      {/* <OrbitControls /> */}
+      <OrbitControls />
     </Canvas>
     )
 }

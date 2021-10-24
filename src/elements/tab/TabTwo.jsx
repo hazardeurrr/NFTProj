@@ -28,7 +28,7 @@ class TabsTwo extends Component{
                                            <ul>
                                                <li>
                                                    <b>Each crab is unique</b><br></br>
-                                                   Crabs are generated progammatically with its own traits, including species, color, accessories, and obviously DANCE MOVES ! 
+                                                   Crabs are generated progammatically with their own traits, including species, color, accessories, faction and obviously DANCE MOVES ! 
                                                </li>
                                                <li>
                                                    <b>Rarity matters</b><br></br>
