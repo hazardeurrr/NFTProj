@@ -55,7 +55,7 @@ const ModelCard = (props) => {
           <Model url={props.url} dance={props.dance}/>
         </Stage>
       </Suspense>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
     </Canvas>
     )
 }

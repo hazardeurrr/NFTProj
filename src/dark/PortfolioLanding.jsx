@@ -245,8 +245,8 @@ const PortfolioLanding = () => {
                         <div className="container">
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
-                                    <div style={{height: 300}}>
-                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={0.85}/>
+                                    <div style={{height: 350}}>
+                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={1.85}/>
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
@@ -293,7 +293,7 @@ const PortfolioLanding = () => {
                                         <div style={{height: 300, marginTop: -75}}>
                                             <ModelCard url="/4078.glb" dance={4} intensity={0.3}/>
                                         </div> */}
-                                        <div style={{height: 655, width:500}}>
+                                        {/* <div style={{height: 655, width:500}}>
                                         <ReactPlayer
                                             url= 'assets/video/videocrab.mp4'
                                             playing={true}
@@ -302,8 +302,8 @@ const PortfolioLanding = () => {
                                             height='100%'
                                             controls = {false}
                                         />
-                                        </div>
-                                        {/* <img className="w-100" src="/assets/images/about/about-8.jpg" alt="About Images"/> */}
+                                        </div> */}
+                                        <img className="w-100" src="/assets/images/about/crabs.png" alt="About Images"/>
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
