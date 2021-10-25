@@ -6,7 +6,6 @@ import TextLoop from "react-text-loop";
 import HeaderThree from "../component/header/HeaderThree";
 import FooterTwo from "../component/footer/FooterTwo";
 import TabTwo from "../elements/tab/TabTwo";
-import BlogContent from "../elements/blog/BlogContent";
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -37,7 +36,6 @@ const PortfolioLanding = () => {
 
     let title = 'The Collection',   
         description = 'Raving Crabs is a collection of 10 000 UNIQUE NFT collectibles on the Ethereum Blockchain.\nEach NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits. \n Our main goal is to build a strong and engaged community who loves memes and music. ';
-    const PostList = BlogContent.slice(0 , 3);
 
     const connected = useSelector((state) => state.metamask_connected)
     const chainID = useSelector((state) => state.chainID)
@@ -112,14 +110,13 @@ const PortfolioLanding = () => {
 
         
         <div className="active-dark">
-            <Sound
+            {/* <Sound
                 url={CrabLoopMP3}
                 playStatus={Sound.status.PLAYING}
-                position={statusPlaying} /* in milliseconds */
-                // onLoading={handleSongLoading}
+                position={statusPlaying}
                 onPlaying={handleSongPlaying}
                 onFinishedPlaying={handleSongFinishedPlaying}
-            />
+            /> */}
             <Helmet pageTitle="Portfolio Landing" />
 
             <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
@@ -238,7 +235,7 @@ const PortfolioLanding = () => {
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
                                     <div style={{height: 350}}>
-                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={0.1}/>
+                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={0.7}/>
                                     </div>
                                 </div>
                                 <div className="col-lg-7">

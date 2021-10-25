@@ -6,7 +6,7 @@ import { Canvas } from "@react-three/fiber"
 
 // useGLTF.preload("/958.glb")
 // useGLTF.preload("/3104.glb")
-// useGLTF.preload("/C1_golden.glb")
+ useGLTF.preload("/C1_golden.glb")
 // useGLTF.preload("/5052.glb")
 // useGLTF.preload("/4078.glb")
 
@@ -46,16 +46,16 @@ const ModelCard = (props) => {
  
 
     return (
-      <Canvas height='100%' width='100%' camera={{ fov: 38 }}>
+      <Canvas height='100%' width='100%' camera={{ fov: 45 }}>
            
       {/* <ambientLight intensity={1} /> */}
-      
+      <OrbitControls makeDefault/>
+
       <Suspense fallback={null}>
-        <Stage environment="forest" contactShadowOpacity={props.shadowOpacity} intensity={props.intensity}>
+        <Stage contactShadowOpacity={props.shadowOpacity} intensity={props.intensity}>
           <Model url={props.url} dance={props.dance}/>
         </Stage>
       </Suspense>
-      {/* <OrbitControls /> */}
     </Canvas>
     )
 }
