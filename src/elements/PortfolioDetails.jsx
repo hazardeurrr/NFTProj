@@ -4,7 +4,6 @@ import { FiChevronUp } from "react-icons/fi";
 import Helmet from "../component/common/Helmet";
 import HeaderThree from "../component/header/HeaderThree";
 import FooterTwo from "../component/footer/FooterTwo";
-import BlogContent from "../elements/blog/BlogContent";
 import PortfolioList from "../elements/portfolio/PortfolioList";
 import { useSelector } from 'react-redux';
 

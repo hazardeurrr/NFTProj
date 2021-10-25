@@ -6,9 +6,6 @@ import TextLoop from "react-text-loop";
 import HeaderThree from "../component/header/HeaderThree";
 import FooterTwo from "../component/footer/FooterTwo";
 import TabTwo from "../elements/tab/TabTwo";
-import ContactThree from "../elements/contact/ContactThree";
-import PortfolioList from "../elements/portfolio/PortfolioList";
-import ServiceList from "../elements/service/ServiceList";
 import BlogContent from "../elements/blog/BlogContent";
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -17,18 +14,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useSelector } from 'react-redux';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import CallAction from '../elements/callaction/CallAction';
 import CustomizedTimeline from '../elements/common/Timeline';
 import ModelCard from '../elements/common/ModelCard';
 import { FiCheck } from "react-icons/fi";
-import ModalVideo from 'react-modal-video';
 import Sound from 'react-sound'
 import CrabLoopMP3 from '../../public/assets/music/crab_loop.mp3'
-import CounterOne from "../elements/counters/CounterOne";
 import {FaTwitter, FaDiscord} from 'react-icons/fa';
-import Portfolio from "../component/HomeLayout/homeOne/Portfolio";
 import ProgressBar from 'react-bootstrap/ProgressBar'
-import FourCrabs from '../elements/common/FourCrabs';
 import ReactPlayer from 'react-player'
 
 
@@ -92,7 +84,7 @@ const PortfolioLanding = () => {
                 <div style={{justifyContent:'center'}}>
                     <h2 style={{color: 'green'}}>ACCESS AUTHORIZED</h2>
                     <h4><b>Only members can enter The Club.</b></h4>
-                    <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/portfolio-details">Enter The Club</a>
+                    <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/the_club">Enter The Club</a>
 
                 </div>
             </div>
@@ -228,8 +220,8 @@ const PortfolioLanding = () => {
                             </div>
                             <div className="col-lg-6 order-1 order-lg-2">
                                 <div className="thumbnail position-relative" style={{marginTop: -100}}>
-                                        <div style={{height: 300, width:'100%'}}><ModelCard url="/958.glb" dance={2} intensity={0.5}/></div>
-                                        <div style={{height: 300, width:'100%'}}><ModelCard url="/3104.glb" dance={2} intensity={0.3}/></div>
+                                        <div style={{height: 400, width:'100%'}}><ModelCard url="/958.glb" dance={2} intensity={0.5}/></div>
+                                        <div style={{height: 400, width:'100%'}}><ModelCard url="/3104.glb" dance={2} intensity={0.3} shadowOpacity={0}/></div>
                                 </div>
                             </div>
                         </div>
@@ -246,7 +238,7 @@ const PortfolioLanding = () => {
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
                                     <div style={{height: 350}}>
-                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={1.85}/>
+                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={0.1}/>
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
@@ -293,7 +285,7 @@ const PortfolioLanding = () => {
                                         <div style={{height: 300, marginTop: -75}}>
                                             <ModelCard url="/4078.glb" dance={4} intensity={0.3}/>
                                         </div> */}
-                                        {/* <div style={{height: 655, width:500}}>
+                                        <div style={{height: 524, width:400, border: "4px solid rgba(85,85,85)"}}>
                                         <ReactPlayer
                                             url= 'assets/video/videocrab.mp4'
                                             playing={true}
@@ -302,8 +294,8 @@ const PortfolioLanding = () => {
                                             height='100%'
                                             controls = {false}
                                         />
-                                        </div> */}
-                                        <img className="w-100" src="/assets/images/about/crabs.png" alt="About Images"/>
+                                        </div>
+                                        {/* <img className="w-100" src="/assets/images/about/crabs.png" alt="About Images"/> */}
                                     </div>
                                 </div>
                                 <div className="col-lg-7">

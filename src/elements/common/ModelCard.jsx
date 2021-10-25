@@ -51,7 +51,7 @@ const ModelCard = (props) => {
       {/* <ambientLight intensity={1} /> */}
       
       <Suspense fallback={null}>
-        <Stage environment="forest" contactShadow={false} shadows={false} contactShadowOpacity={0} intensity={props.intensity}>
+        <Stage environment="forest" contactShadowOpacity={props.shadowOpacity} intensity={props.intensity}>
           <Model url={props.url} dance={props.dance}/>
         </Stage>
       </Suspense>
