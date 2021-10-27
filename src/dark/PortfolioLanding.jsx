@@ -68,6 +68,18 @@ const PortfolioLanding = () => {
         
     }
 
+    const displayClubAccessPrevious = () => {
+        return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+            <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
+            <div style={{justifyContent:'center'}}>
+                <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
+                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
+                {/* <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
+
+            </div>
+        </div>
+    }
+
     const displayClubAccess = () => {
         if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHECKER ICI SI L'ADRESSE POSSEDE DES NFTS OU NON
             return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
@@ -321,7 +333,7 @@ const PortfolioLanding = () => {
                                     </div>
                                 </div>
                             </div>
-                            {displayClubAccess()}
+                            {displayClubAccessPrevious()}
                             
                             {/* <div className="row">
                                 <PortfolioList styevariation="text-center mt--40" column="col-lg-4 col-md-6 col-sm-6 col-12" item="7" />
