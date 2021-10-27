@@ -1,8 +1,8 @@
 import React, { Component , Fragment } from "react";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
+import FooterTwo from "../footer/FooterTwo";
+import HeaderThree from "../header/HeaderThree";
 
 
 class App extends Component{
@@ -15,7 +15,8 @@ class App extends Component{
 
             
                 <Fragment>
-                    <Header headertransparent="header--transparent" colorblack="color--black" logoname="logo.png" />
+                    <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
+
                     {this.props.children}
 
                     {/* Start Back To Top */}
@@ -25,8 +26,7 @@ class App extends Component{
                         </ScrollToTop>
                     </div>
                     {/* End Back To Top */}
-                    <Footer />
-                
+                    <FooterTwo />
                 </Fragment>
         )
     }

@@ -6,8 +6,8 @@ class PageHelmet extends Component{
         return(
             <React.Fragment>
                 <Helmet>
-                    <title>{this.props.pageTitle} || React Multipurpose Template </title>
-                    <meta name="description" content="Trydo – Multipurpose React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Trydo React Template will create that various landing Template, Creative Agency, And Corporate Website ." />
+                    <title>{this.props.pageTitle} || 6666 3D Animated NFTs </title>
+                    <meta name="description" content="Raving Crabs NFT is a collection of 6666 unique 3D Animated Models of Crabs dancing. Get your Raving Crab to become a member, enter The Club and Rave." />
                 </Helmet>
             </React.Fragment>
         )

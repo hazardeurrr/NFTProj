@@ -26,8 +26,8 @@ const mapStateToProps = state => {
 }
 
 const SocialShare = [
-    {Social: <FaDiscord /> , link: 'https://www.discord.gg/'},
-    {Social: <FaTwitter /> , link: 'https://twitter.com/'},
+    {Social: <FaDiscord /> , link: 'https://discord.gg/mc4ycfredU'},
+    {Social: <FaTwitter /> , link: 'https://twitter.com/ravingcrabs'},
 ]
 class HeaderThree extends Component{
     constructor(props) {
@@ -234,12 +234,13 @@ class HeaderThree extends Component{
         }else if(logo === 'dark'){
             logoUrl = <img src="/assets/images/logo/logo-dark.png" alt="Digital Agency" />;
         }else if(logo === 'symbol-dark'){
-            logoUrl = <img src="/assets/images/logo/logo-symbol-dark.png" alt="Digital Agency" />;
+            logoUrl = <img src="/assets/images/logo/logo-extended.png" alt="Raving Crabs Logo" />;
         }else if(logo === 'symbol-light'){
             logoUrl = <img src="/assets/images/logo/logo-symbol-light.png" alt="Digital Agency" />;
         }else{
             logoUrl = <img src="/assets/images/logo/logo.png" alt="Digital Agency" />;
         }
+        
         
         return(
             <header className={`header-area header-style-two header--fixed ${color}`}>
@@ -249,6 +250,7 @@ class HeaderThree extends Component{
                             <a href={this.props.homeLink}>
                                 {logoUrl}
                             </a>
+                            {/* <h4 style={{color: 'white'}}>RAVING CRABS NFT</h4> */}
                         </div>
                         {/* <nav className="mainmenunav d-lg-block ml--50">
                             <Scrollspy className="mainmenu" items={['home','about','service','portfolio','blog','contact']} currentClassName="is-current" offset={-200}>

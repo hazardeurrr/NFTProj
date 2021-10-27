@@ -18,7 +18,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          November 10th 2021
+          November 15th 2021
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector />
@@ -192,7 +192,7 @@ export default function CustomizedTimeline() {
             The Raving Crabs Festival
           </Typography><br></br>
           <Typography variant="subtitle" component="span" color="gray">
-            3 stages, 1 message : RAVE<br></br>
+            2 stages, 1 message : RAVE<br></br>
             An online festival for Raving Crab owners
           </Typography>
         </TimelineContent>

@@ -2,8 +2,8 @@ import React from 'react';
 import {FaTwitter ,FaDiscord ,FaFacebookF , FaLinkedinIn} from "react-icons/fa";
 
 const SocialShare = [
-    {Social: <FaDiscord /> , link: 'https://discord.gg/'},
-    {Social: <FaTwitter /> , link: 'https://twitter.com/'},
+    {Social: <FaDiscord /> , link: 'https://discord.gg/mc4ycfredU'},
+    {Social: <FaTwitter /> , link: 'https://twitter.com/ravingcrabs'},
 ]
 
 const FooterTwo = () => {
@@ -14,8 +14,8 @@ const FooterTwo = () => {
                     <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div className="inner">
                             <div className="logo text-center text-sm-left mb_sm--20">
-                                <a href="/home-one">
-                                    <img src="/assets/images/logo/logo.png" alt="Logo images"/>
+                                <a href="/">
+                                    <img src="/assets/images/logo/logo-footer.png" alt="Logo Raving Crabs"/>
                                 </a>
                             </div>
                         </div>

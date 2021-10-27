@@ -16,11 +16,14 @@ import Button from '@material-ui/core/Button';
 import CustomizedTimeline from '../elements/common/Timeline';
 import ModelCard from '../elements/common/ModelCard';
 import { FiCheck } from "react-icons/fi";
-import Sound from 'react-sound'
-import CrabLoopMP3 from '../../public/assets/music/crab_loop.mp3'
 import {FaTwitter, FaDiscord} from 'react-icons/fa';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import ReactPlayer from 'react-player'
+import Music from '../elements/common/Music';
+import VideoCrab from '../elements/common/VideoCrab';
+import GoldenModel from '../elements/common/GoldenModel';
+import PlaneModel from '../elements/common/PlaneModel';
+import UpModel from '../elements/common/UpModel';
 
 
 const SlideList = [
@@ -89,35 +92,12 @@ const PortfolioLanding = () => {
             }
         }
 
-  
-
-    const handleSongLoading = () => {
-
-    }
-
-    const handleSongPlaying = (e) => {
-        setStatusPlaying(e.position)
-    }
-
-    const handleSongFinishedPlaying = () => {
-        setStatusPlaying(0)
-    }
-
-    const [statusPlaying, setStatusPlaying] = React.useState(0)
-    
-
     return (
 
         
         <div className="active-dark">
-            {/* <Sound
-                url={CrabLoopMP3}
-                playStatus={Sound.status.PLAYING}
-                position={statusPlaying}
-                onPlaying={handleSongPlaying}
-                onFinishedPlaying={handleSongFinishedPlaying}
-            /> */}
-            <Helmet pageTitle="Portfolio Landing" />
+            <Music />
+            <Helmet pageTitle="Raving Crabs NFT" />
 
             <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
             {/* Start Slider Area   */}
@@ -138,7 +118,7 @@ const PortfolioLanding = () => {
                                                 <span> 4 GOLDEN</span>
                                                 <span> 25 FACTIONS</span>
                                                 <span> +15 DANCES</span>
-                                                <span> 1 FESTIVAL</span>
+                                                <span> ACCESS TO OUR FESTIVAL</span>
                                                 <span> MINT YOURS NOW</span>
 
                                             </TextLoop>{" "}
@@ -189,6 +169,7 @@ const PortfolioLanding = () => {
                                     <div className="mt--30">
                                         <h3 style={{fontSize: 30}}>More than just a NFT</h3>
                                         <ul className="list-style--1">
+                                            <li style={{fontSize: 20}}><FiCheck /> A beautiful 3D Animated Model</li>
                                             <li style={{fontSize: 20}}><FiCheck /> Each crab is unique</li>
                                             <li style={{fontSize: 20}}><FiCheck /> Show your moves on the dancefloor</li>
                                             <li style={{fontSize: 20}}><FiCheck /> Rave with the community</li>
@@ -208,17 +189,17 @@ const PortfolioLanding = () => {
                                     <div className="mt--30">
                                         <h3 style={{fontSize: 30}}>Rave at our festival</h3>
                                         <ul className="list-style--1">
-                                            <li style={{fontSize: 20}}><FiCheck /> Own a crab to get access to the Raving Crab Festival</li>
+                                            <li style={{fontSize: 20}}><FiCheck /> Own a crab to get access to the <b>Raving Crab Festival</b></li>
                                             <li style={{fontSize: 20}}><FiCheck /> An online event <b>ONLY FOR THE COMMUNITY</b></li>
-                                            <li style={{fontSize: 20}}><FiCheck /> 3 stages, 1 message : <b>RAVE</b></li>
+                                            <li style={{fontSize: 20}}><FiCheck /> 2 stages, 1 message : <b>RAVE</b></li>
                                         </ul>
                                     </div>                             
                                 </div>
                             </div>
                             <div className="col-lg-6 order-1 order-lg-2">
                                 <div className="thumbnail position-relative" style={{marginTop: -100}}>
-                                        <div style={{height: 400, width:'100%'}}><ModelCard url="/958.glb" dance={2} intensity={0.5}/></div>
-                                        <div style={{height: 400, width:'100%'}}><ModelCard url="/3104.glb" dance={2} intensity={0.3} shadowOpacity={0}/></div>
+                                        <div style={{height: 450, width:'100%'}}><PlaneModel /></div>
+                                        <div style={{height: 450, width:'100%'}}><UpModel/></div>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +216,8 @@ const PortfolioLanding = () => {
                             <div className="row row--35 align-items-center">
                                 <div className="col-lg-5">
                                     <div style={{height: 350}}>
-                                        <ModelCard url="/C1_golden.glb" dance={3} intensity={0.7}/>
+                                        {/* <ModelCard url="/C1_golden.glb" dance={3} intensity={0.7}/> */}
+                                        <GoldenModel />
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
@@ -262,7 +244,19 @@ const PortfolioLanding = () => {
 
    
 
-           
+            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120 ">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="inner text-center">
+                                <span>JOIN THE CLUB</span>
+                                <h2>LET THE RAVE BEGIN</h2>
+                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             
            
@@ -283,14 +277,7 @@ const PortfolioLanding = () => {
                                             <ModelCard url="/4078.glb" dance={4} intensity={0.3}/>
                                         </div> */}
                                         <div style={{height: 524, width:400, border: "4px solid rgba(85,85,85)"}}>
-                                        <ReactPlayer
-                                            url= 'assets/video/videocrab.mp4'
-                                            playing={true}
-                                            loop={true}
-                                            width='100%'
-                                            height='100%'
-                                            controls = {false}
-                                        />
+                                            <VideoCrab />
                                         </div>
                                         {/* <img className="w-100" src="/assets/images/about/crabs.png" alt="About Images"/> */}
                                     </div>
@@ -315,19 +302,7 @@ const PortfolioLanding = () => {
             </div>            
             {/* End About Area */}
            
-            <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120 ">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="inner text-center">
-                                <span>JOIN THE CLUB</span>
-                                <h2>LET THE RAVE BEGIN</h2>
-                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
        
 
@@ -362,51 +337,6 @@ const PortfolioLanding = () => {
             </div>
             {/* End Portfolio Area */}
 
-            {/* Start Blog Area */}
-            {/* <div id="blog" className="fix">
-                <div className="rn-blog-area ptb--120 bg_color--5 mb-dec--30">
-                    <div className="container">
-                        <div className="row align-items-end">
-                            <div className="col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div className="section-title text-center">
-                                    <h2>Latest News</h2>
-                                    <p>There are many variations of passages of Lorem Ipsum available, <br />but the majority have suffered alteration.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row mt--60 mt_sm--40">
-                            {PostList.map((value , i ) => (
-                                <div className="col-lg-4 col-md-6 col-12" key={i}>
-                                    <div className="blog blog-style--1">
-                                        <div className="thumbnail">
-                                            <a href="/blog-details">
-                                                <img className="w-100" src={`/assets/images/blog/blog-${value.images}.jpg`} alt="Blog Images"/>
-                                            </a>
-                                        </div>
-                                        <div className="content">
-                                            <p className="blogtype">{value.category}</p>
-                                            <h4 className="title"><a href="/blog-details">{value.title}</a></h4>
-                                            <div className="blog-btn">
-                                                <a className="rn-btn text-white" href="/blog-details">Read More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>    
-                    </div>    
-                </div>
-            </div> */}
-            {/* End Blog Area */}
-
-            {/* Start COntact Area */}
-            {/* <div id="contact" className="fix">
-                <div className="rn-contact-area ptb--120 bg_color--1">
-                    <ContactThree contactImages="/assets/images/about/about-9.jpg" contactTitle="Hire Me." />
-                </div>
-            </div> */}
-            {/* End COntact Area */}
-
             <div className="call-to-action-wrapper call-to-action text-white-wrapper  ptb--120 bg_color--1">
                 <div className="container">
                     <div className="row">
@@ -414,8 +344,8 @@ const PortfolioLanding = () => {
                             <div className="inner text-center">
                                 <h2>JOIN THE COMMUNITY</h2>
                                 <div style={{display: 'flex', alignItems:'center', justifyContent:'center'}}>
-                                    <button style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></button>
-                                    <button style={{marginLeft: 10}} className="rn-button-style--2"><span><FaTwitter /> Twitter</span></button>
+                                    <a target='_blank' href='https://discord.gg/mc4ycfredU' style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></a>
+                                    <a target='_blank' href='https://twitter.com/ravingcrabs' style={{marginLeft: 10}} className="rn-button-style--2"><span><FaTwitter /> Twitter</span></a>
                                 </div>
                             </div>
                         </div>

@@ -63,6 +63,7 @@
     "react-accessible-accordion": "^3.3.4",
     "react-animate-on-scroll": "^2.1.5",
     "react-app-polyfill": "^1.0.5",
+    "react-audio-player": "^0.17.0",
     "react-bootstrap": "^2.0.0-rc.0",
     "react-countup": "^4.3.2",
     "react-dev-utils": "^9.1.0",

@@ -6,7 +6,7 @@ import { Canvas } from "@react-three/fiber"
 
 // useGLTF.preload("/958.glb")
 // useGLTF.preload("/3104.glb")
- useGLTF.preload("/C1_golden.glb")
+//  useGLTF.preload("/C1_golden.glb")
 // useGLTF.preload("/5052.glb")
 // useGLTF.preload("/4078.glb")
 

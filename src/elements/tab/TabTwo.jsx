@@ -46,7 +46,7 @@ class TabsTwo extends Component{
                                                     <b>Number of Crabs </b> : 6666
                                                 </li>
                                                 <li>
-                                                    <b>Crabs left to be claimed </b> : 6000
+                                                    <b>Crabs left to be claimed </b> : 6666
                                                     {/* See on the contract how many are already minted here */}
                                                 </li>
                                                
