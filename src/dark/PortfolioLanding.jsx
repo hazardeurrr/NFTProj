@@ -24,6 +24,7 @@ import VideoCrab from '../elements/common/VideoCrab';
 import GoldenModel from '../elements/common/GoldenModel';
 import PlaneModel from '../elements/common/PlaneModel';
 import UpModel from '../elements/common/UpModel';
+import GifsList from '../elements/common/GifsList';
 
 
 const SlideList = [
@@ -278,6 +279,7 @@ const PortfolioLanding = () => {
                                         </div> */}
                                         <div style={{width: '100%', border: "4px solid rgba(85,85,85)"}}>
                                             {/* <VideoCrab /> */}
+                                            <GifsList />
                                         </div>
                                         {/* <img className="w-100" src="/assets/images/about/crabs.png" alt="About Images"/> */}
                                     </div>
