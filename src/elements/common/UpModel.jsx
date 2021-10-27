@@ -18,7 +18,7 @@ function ModelY() {
     actions.Dance2.play()
   })
 
-  return <primitive object={scene} />;
+  return <primitive rotation={[0,24.85,0]} object={scene} />;
 }
 
 const UpModel = () => {
@@ -29,7 +29,7 @@ const UpModel = () => {
       <Canvas height='100%' width='100%' camera={{ fov: 45 }}>
            
       {/* <ambientLight intensity={1} /> */}
-      <OrbitControls enableZoom={false} makeDefault/>
+      {/* <OrbitControls enableZoom={false} makeDefault/> */}
      
       <Suspense fallback={null}>
       <Environment

@@ -246,11 +246,12 @@ class HeaderThree extends Component{
             <header className={`header-area header-style-two header--fixed ${color}`}>
                 <div className="header-wrapper">
                     <div className="header-left d-flex align-items-center">
-                        <div className="logo">
-                            <a href={this.props.homeLink}>
+                        <div className="logo" style={{display: "flex", paddingTop: 18}}>
+                            {/* <a href={this.props.homeLink}>
                                 {logoUrl}
-                            </a>
-                            {/* <h4 style={{color: 'white'}}>RAVING CRABS NFT</h4> */}
+                            </a> */}
+                            <a href={this.props.homeLink}><img style={{height: 25, width: 25}} src='assets/images/logo/logo-simplified.png' alt="logo Crab Rave" /></a>
+                            <a href={this.props.homeLink}><h4 className="header_title" style={{color: 'rgba(145,145,145,1)', marginLeft: 5, marginTop: -1}}>RAVING CRABS</h4></a>
                         </div>
                         {/* <nav className="mainmenunav d-lg-block ml--50">
                             <Scrollspy className="mainmenu" items={['home','about','service','portfolio','blog','contact']} currentClassName="is-current" offset={-200}>
@@ -263,25 +264,24 @@ class HeaderThree extends Component{
                             </Scrollspy>
                         </nav> */}
                     </div>
-                    <div className="header-right">
+                    <div className="header-right" style={{paddingTop: 7, paddingBottom: 7}}>
                         <div className="social-share-inner">
                             <ul className="social-share social-style--2 color-black d-flex justify-content-start liststyle">
                                 {SocialShare.map((val , i) => (
-                                    <li key={i}><a href={`${val.link}`}>{val.Social}</a></li>
+                                    <li key={i}><a target='_blank' href={`${val.link}`}>{val.Social}</a></li>
                                 ))}
                             </ul>
                         </div>
                         <div className="header-btn">
                             {this.isConnected()}
                         </div>
-                        {/* Start Humberger Menu  */}
-                        <div className="humberger-menu d-block d-lg-none pl--20">
+                        {/* Humberger Menu  */}
+                        {/* <div className="humberger-menu d-block d-lg-none pl--20">
                             <span onClick={this.menuTrigger} className="menutrigger text-white"><FiMenu /></span>
                         </div>
-                        {/* End Humberger Menu  */}
                         <div className="close-menu d-block d-lg-none">
                             <span onClick={this.CLoseMenuTrigger} className="closeTrigger"><FiX /></span>
-                        </div>
+                        </div> */}
 
                         
                         <Dialog

@@ -27,7 +27,7 @@ const PlaneModel = () => {
       <Canvas height='100%' width='100%' camera={{ fov: 47 }}>
            
       {/* <ambientLight intensity={1} /> */}
-      <OrbitControls enableZoom={false} makeDefault/>
+      {/* <OrbitControls enableZoom={false} makeDefault/> */}
      
       <Suspense fallback={null}>
         <Environment

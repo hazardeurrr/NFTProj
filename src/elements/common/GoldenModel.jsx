@@ -29,7 +29,7 @@ const GoldenModel = () => {
       <Canvas height='100%' width='100%' camera={{ fov: 45 }}>
            
       {/* <ambientLight intensity={1} /> */}
-      <OrbitControls enableZoom={false} makeDefault/>
+      <OrbitControls enableZoom={true} makeDefault/>
      
       <Suspense fallback={null}>
         <Environment

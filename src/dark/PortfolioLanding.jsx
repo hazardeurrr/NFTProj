@@ -112,13 +112,13 @@ const PortfolioLanding = () => {
                                         <div className={`inner ${value.textPosition}`}>
                                             {value.category ? <span>{value.category}</span> : ''}
                                             <h1 className="title">RAVING CRABS <br/>
-                                            <TextLoop>
+                                            <TextLoop interval={2000}>
                                                 <span> 6666 CRABS</span>
                                                 <span> 4 SPECIES</span>
                                                 <span> 4 GOLDEN</span>
                                                 <span> 25 FACTIONS</span>
                                                 <span> +15 DANCES</span>
-                                                <span> ACCESS TO OUR FESTIVAL</span>
+                                                <span> 1 FESTIVAL</span>
                                                 <span> MINT YOURS NOW</span>
 
                                             </TextLoop>{" "}
@@ -198,8 +198,8 @@ const PortfolioLanding = () => {
                             </div>
                             <div className="col-lg-6 order-1 order-lg-2">
                                 <div className="thumbnail position-relative" style={{marginTop: -100}}>
-                                        <div style={{height: 450, width:'100%'}}><PlaneModel /></div>
-                                        <div style={{height: 450, width:'100%'}}><UpModel/></div>
+                                        <div className="dshow" ><PlaneModel /></div>
+                                        <div className="dshow" style={{marginTop: -115}} ><UpModel/></div>
                                 </div>
                             </div>
                         </div>
@@ -276,8 +276,8 @@ const PortfolioLanding = () => {
                                         <div style={{height: 300, marginTop: -75}}>
                                             <ModelCard url="/4078.glb" dance={4} intensity={0.3}/>
                                         </div> */}
-                                        <div style={{height: 524, width:400, border: "4px solid rgba(85,85,85)"}}>
-                                            <VideoCrab />
+                                        <div style={{width: '100%', border: "4px solid rgba(85,85,85)"}}>
+                                            {/* <VideoCrab /> */}
                                         </div>
                                         {/* <img className="w-100" src="/assets/images/about/crabs.png" alt="About Images"/> */}
                                     </div>
