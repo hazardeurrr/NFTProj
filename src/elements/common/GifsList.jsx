@@ -18,16 +18,16 @@ const GifsList = () => {
       <div>
         <div style={{display:'flex'}}>
           <img style={{width: '33.3%', height:'33.3%'}} src={G4} alt="Crab Rave gif"/>
-          <img style={{width: '33.3%', height:'33.3%'}} src={G1} alt="Crab Rave gif"/>
           <img style={{width: '33.3%', height:'33.3%'}} src={G9} alt="Crab Rave gif"/>
+          <img style={{width: '33.3%', height:'33.3%'}} src={G6} alt="Crab Rave gif"/>
         </div>
         <div style={{display:'flex'}}>
           <img style={{width: '33.3%', height:'33.3%'}} src={G7} alt="Crab Rave gif"/>
           <img style={{width: '33.3%', height:'33.3%'}} src={G2} alt="Crab Rave gif"/>
-          <img style={{width: '33.3%', height:'33.3%'}} src={G6} alt="Crab Rave gif"/>
+          <img style={{width: '33.3%', height:'33.3%'}} src={G8} alt="Crab Rave gif"/>
         </div><div style={{display:'flex'}}>
           <img style={{width: '33.3%', height:'33.3%'}} src={G3} alt="Crab Rave gif"/>
-          <img style={{width: '33.3%', height:'33.3%'}} src={G8} alt="Crab Rave gif"/>
+          <img style={{width: '33.3%', height:'33.3%'}} src={G1} alt="Crab Rave gif"/>
           <img style={{width: '33.3%', height:'33.3%'}} src={G5} alt="Crab Rave gif"/>
         </div>
       </div>
