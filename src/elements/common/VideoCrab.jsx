@@ -8,7 +8,7 @@ const VideoCrab = () => {
     return (
       <ReactPlayer
       muted={true}
-      url= 'assets/video/videocrab.mp4'
+      url= 'assets/video/videocrabc.mp4'
       playing={true}
       loop={true}
       width='100%'
