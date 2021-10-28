@@ -244,6 +244,7 @@ const PortfolioLanding = () => {
                                             <h5 style={{fontSize: 20}}>2222 Crabs left @0.06Ξ</h5>
 
                                             <ProgressBar striped variant="danger" now={0} />
+                                            <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 15th 2021</h5>
                                         </div>
                                         
                                         {/* <button style={{marginTop : 40, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
