@@ -25,6 +25,8 @@ import GoldenModel from '../elements/common/GoldenModel';
 import PlaneModel from '../elements/common/PlaneModel';
 import UpModel from '../elements/common/UpModel';
 import GifsList from '../elements/common/GifsList';
+import VideoCrab1 from '../elements/common/VideoCrab1';
+import VideoCrab2 from '../elements/common/VideoCrab2';
 
 
 const SlideList = [
@@ -211,8 +213,10 @@ const PortfolioLanding = () => {
                             </div>
                             <div className="col-lg-6 order-1 order-lg-2">
                                 <div className="thumbnail position-relative" style={{marginTop: -100}}>
-                                        <div className="dshow" ><PlaneModel /></div>
-                                        <div className="dshow" style={{marginTop: -115}} ><UpModel/></div>
+                                        {/* <div className="dshow" ><PlaneModel /></div>
+                                        <div className="dshow" style={{marginTop: -115}} ><UpModel/></div> */}
+                                        <div className="dshow" ><VideoCrab1 /> </div>
+                                        <div className="dshow" style={{marginTop: -115}} ><VideoCrab2 /></div>
                                 </div>
                             </div>
                         </div>
