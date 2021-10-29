@@ -134,6 +134,7 @@ const PortfolioLanding = () => {
                                                 <span> 4 GOLDEN</span>
                                                 <span> 25 FACTIONS</span>
                                                 <span> +15 DANCES</span>
+                                                <span> 1 COMMUNITY</span>
                                                 <span> 1 FESTIVAL</span>
                                                 <span> MINT YOURS NOW</span>
 
