@@ -17,6 +17,7 @@ import CustomizedTimeline from '../elements/common/Timeline';
 import ModelCard from '../elements/common/ModelCard';
 import { FiCheck } from "react-icons/fi";
 import {FaTwitter, FaDiscord} from 'react-icons/fa';
+import {AiOutlinePlayCircle} from 'react-icons/ai'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import ReactPlayer from 'react-player'
 import Music from '../elements/common/Music';
@@ -110,7 +111,6 @@ const PortfolioLanding = () => {
         
         <div className="active-dark">
             
-            <Music />
             <Helmet pageTitle="Raving Crabs NFT" />
 
             <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
@@ -123,10 +123,12 @@ const PortfolioLanding = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-12">
+
                                         <div className={`inner ${value.textPosition}`}>
+
                                             {value.category ? <span>{value.category}</span> : ''}
-                                            <h1 className="title">RAVING CRABS <br/>
-                                            <TextLoop interval={2000}>
+                                            <div style={{display:"flex"}}><h1 className="title" style={{marginRight: 20}}>RAVING CRABS</h1><Music /></div><br/>
+                                            <h1 className="title" style={{marginTop: -40}}><TextLoop interval={2000}>
                                                 <span> 6666 CRABS</span>
                                                 <span> 4 SPECIES</span>
                                                 <span> 4 GOLDEN</span>
@@ -138,6 +140,7 @@ const PortfolioLanding = () => {
                                             </TextLoop>{" "}
                                             </h1>
                                             <h2>Enter The Club and RAVE</h2>
+                                            
                                             {/* <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
                                             <div style={{display: 'flex', marginTop: 25}}>
                                                 <a target='_blank' href='https://discord.gg/mc4ycfredU' style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></a>
@@ -248,7 +251,7 @@ const PortfolioLanding = () => {
                                             <h5 style={{fontSize: 20}}>2222 Crabs left @0.06Ξ</h5>
 
                                             <ProgressBar striped variant="danger" now={0} />
-                                            <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 15th 2021</h5>
+                                            <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5>
                                         </div>
                                         
                                         {/* <button style={{marginTop : 40, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
@@ -270,7 +273,7 @@ const PortfolioLanding = () => {
                             <div className="inner text-center">
                                 <span>JOIN THE CLUB</span>
                                 <h2>LET THE RAVE BEGIN</h2>
-                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Release on Nov. 15th 2021</span></button>
+                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Release on Nov. 17th 2021</span></button>
 
                                 {/* <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button> */}
                             </div>

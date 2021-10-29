@@ -18,7 +18,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          November 15th 2021
+          November 17th 2021
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector />

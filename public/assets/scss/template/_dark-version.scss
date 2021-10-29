@@ -1,6 +1,13 @@
+
+
+
 /*--------------------------
     Color Darker Version  
 ----------------------------*/
+
+.play-button {
+    margin-top: 12px
+  }
 
 .active-dark {
     background: #101010;
@@ -131,6 +138,9 @@
     }
 
     @media #{$md-layout} {
+        .play-button {
+          margin-top: 15px
+        }
 
         .dshow {
             width: 100%;
@@ -168,6 +178,9 @@
         }
     }
     @media #{$sm-layout} {
+        .play-button {
+          margin-top: 3.5px
+        }
 
         .dshow {
             width: 100%;
