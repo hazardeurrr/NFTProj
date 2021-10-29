@@ -139,6 +139,10 @@ const PortfolioLanding = () => {
                                             </h1>
                                             <h2>Enter The Club and RAVE</h2>
                                             {/* <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
+                                            <div style={{display: 'flex', marginTop: 25}}>
+                                                <a target='_blank' href='https://discord.gg/mc4ycfredU' style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></a>
+                                                <a target='_blank' href='https://twitter.com/ravingcrabs' style={{marginLeft: 10}} className="rn-button-style--2"><span><FaTwitter /> Twitter</span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -266,7 +270,9 @@ const PortfolioLanding = () => {
                             <div className="inner text-center">
                                 <span>JOIN THE CLUB</span>
                                 <h2>LET THE RAVE BEGIN</h2>
-                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button>
+                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Release on Nov. 15th 2021</span></button>
+
+                                {/* <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button> */}
                             </div>
                         </div>
                     </div>
