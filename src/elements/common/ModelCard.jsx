@@ -3,6 +3,7 @@ import * as THREE from 'three';
 
 import { OrbitControls,useGLTF, useAnimations, Environment, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber"
+import CircularProgress from '@mui/material/CircularProgress'
 
 // useGLTF.preload("/958.glb")
 // useGLTF.preload("/3104.glb")
@@ -51,7 +52,7 @@ const ModelCard = (props) => {
       {/* <ambientLight intensity={1} /> */}
       <OrbitControls makeDefault/>
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<CircularProgress />}>
         <Stage contactShadowOpacity={props.shadowOpacity} intensity={props.intensity}>
           <Model url={props.url} dance={props.dance}/>
         </Stage>
