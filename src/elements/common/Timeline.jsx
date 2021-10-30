@@ -149,7 +149,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          Q1 2022
+          January 2022
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector/>
@@ -177,7 +177,7 @@ export default function CustomizedTimeline() {
           variant="body2"
           color="gray"
         >
-          Q2 2022
+          Q1 2022
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineConnector/>
