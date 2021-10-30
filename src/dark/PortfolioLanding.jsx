@@ -40,7 +40,7 @@ const SlideList = [
 const PortfolioLanding = () => {
 
     let title = 'The Collection',   
-        description = 'Raving Crabs is a collection of 10 000 UNIQUE NFT collectibles on the Ethereum Blockchain.\nEach NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits. \n Our main goal is to build a strong and engaged community who loves memes and music. ';
+        description = 'Raving Crabs is a collection of 6666 UNIQUE NFT collectibles on the Ethereum Blockchain.\nEach NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits. \n Our main goal is to build a strong and engaged community who loves memes and music. ';
 
     const connected = useSelector((state) => state.metamask_connected)
     const chainID = useSelector((state) => state.chainID)
