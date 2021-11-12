@@ -1,0 +1,29 @@
+{
+ "dna": "00081316",
+ "name": "#4",
+ "description": "Unique Raving Crab #4. Enter The Club and RAVE.",
+ "image": "ipfs//$firstURItoReplace/4.gif",
+ "animation_url": "ipfs//$secondURItoReplace/4.glb",
+ "attributes": [
+  {
+   "trait_type": "Species",
+   "value": "Craby"
+  },
+  {
+   "trait_type": "Faction",
+   "value": "Dogecoin"
+  },
+  {
+   "trait_type": "Hat",
+   "value": "Brown"
+  },
+  {
+   "trait_type": "Skin",
+   "value": "Brown w/ white cross"
+  },
+  {
+   "trait_type": "Dance",
+   "value": "Hey-Ho"
+  }
+ ]
+}

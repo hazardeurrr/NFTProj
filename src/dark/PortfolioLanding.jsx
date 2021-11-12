@@ -222,6 +222,7 @@ const PortfolioLanding = () => {
                                 <div className="thumbnail position-relative" style={{marginTop: -100}}>
                                         <div className="dshow" ><PlaneModel /></div>
                                         <div className="dshow" style={{marginTop: -115}} ><UpModel/></div>
+                                        
                                 </div>
                             </div>
                         </div>

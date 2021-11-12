@@ -39,6 +39,7 @@ function Model(props) {
     }
   })
 
+
   return <primitive object={scene} />;
 }
 
@@ -47,13 +48,13 @@ const ModelCard = (props) => {
  
 
     return (
-      <Canvas height='100%' width='100%' camera={{ fov: 45 }}>
+      <Canvas height='100%' width='100%' camera={{fov: 45 }}>
            
       {/* <ambientLight intensity={1} /> */}
       <OrbitControls makeDefault/>
 
-      <Suspense fallback={<CircularProgress />}>
-        <Stage contactShadowOpacity={props.shadowOpacity} intensity={props.intensity}>
+      <Suspense fallback={null}>
+        <Stage  contactShadowOpacity={props.shadows} intensity={props.intensity}>
           <Model url={props.url} dance={props.dance}/>
         </Stage>
       </Suspense>

@@ -1,0 +1,29 @@
+{
+ "dna": "00241315",
+ "name": "#3",
+ "description": "Unique Raving Crab #3. Enter The Club and RAVE.",
+ "image": "ipfs//$firstURItoReplace/3.gif",
+ "animation_url": "ipfs//$secondURItoReplace/3.glb",
+ "attributes": [
+  {
+   "trait_type": "Species",
+   "value": "Craby"
+  },
+  {
+   "trait_type": "Faction",
+   "value": "Ripple"
+  },
+  {
+   "trait_type": "Hat",
+   "value": "Gray"
+  },
+  {
+   "trait_type": "Skin",
+   "value": "Brown w/ white cross"
+  },
+  {
+   "trait_type": "Dance",
+   "value": "Hey-Ho"
+  }
+ ]
+}

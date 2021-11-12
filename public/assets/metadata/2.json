@@ -1,0 +1,29 @@
+{
+ "dna": "00151004",
+ "name": "#2",
+ "description": "Unique Raving Crab #2. Enter The Club and RAVE.",
+ "image": "ipfs//$firstURItoReplace/2.gif",
+ "animation_url": "ipfs//$secondURItoReplace/2.glb",
+ "attributes": [
+  {
+   "trait_type": "Species",
+   "value": "Craby"
+  },
+  {
+   "trait_type": "Faction",
+   "value": "Shiba Inu"
+  },
+  {
+   "trait_type": "Hat",
+   "value": "Light pink"
+  },
+  {
+   "trait_type": "Skin",
+   "value": "White w/ pink cross"
+  },
+  {
+   "trait_type": "Dance",
+   "value": "Hey-Ho"
+  }
+ ]
+}

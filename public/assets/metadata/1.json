@@ -1,0 +1,29 @@
+{
+ "dna": "00020918",
+ "name": "#1",
+ "description": "Unique Raving Crab #1. Enter The Club and RAVE.",
+ "image": "ipfs//$firstURItoReplace/1.gif",
+ "animation_url": "ipfs//$secondURItoReplace/1.glb",
+ "attributes": [
+  {
+   "trait_type": "Species",
+   "value": "Craby"
+  },
+  {
+   "trait_type": "Faction",
+   "value": "Avalanche"
+  },
+  {
+   "trait_type": "Hat",
+   "value": "Gray-green"
+  },
+  {
+   "trait_type": "Skin",
+   "value": "Gray w/ small orange dots"
+  },
+  {
+   "trait_type": "Dance",
+   "value": "Hey-Ho"
+  }
+ ]
+}
