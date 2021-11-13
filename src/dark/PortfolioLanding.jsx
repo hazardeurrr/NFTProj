@@ -31,6 +31,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { convertNeSwToNwSe } from 'google-map-react';
+import Rccontract from '../elements/Rccontract';
 
 const SlideList = [
     {
@@ -289,6 +290,8 @@ const PortfolioLanding = () => {
                                 <div style={{display:'flex', alignItems:'center'}}><h2 style={{color:'gray', fontSize: 35}}>Mint your Raving Crab now and get a chance to <span style={{color:'#f9014c', fontSize: 45, marginLeft: 10}}> WIN 5 ETH !</span></h2></div>
                                 <div style={{display:'flex'}}><p className="description" style={{color:'gray', fontSize: 21}}>If you mint one of our 4 ultra rare golden crab (like the Craby above), we will offer to buy it back for 5 ETH !*</p></div>
                                 <div style={{display:'flex', justifyContent:'flex-end', marginRight: 13}}><p className="description" style={{color:'gray', fontSize: 11}}>*See roadmap</p></div>
+                            
+                                <Rccontract />
                             </div>
                         </div>
                     </div>
