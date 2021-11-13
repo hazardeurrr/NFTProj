@@ -291,7 +291,7 @@ const PortfolioLanding = () => {
                                 <div style={{display:'flex'}}><p className="description" style={{color:'gray', fontSize: 21}}>If you mint one of our 4 ultra rare golden crab (like the Craby above), we will offer to buy it back for 5 ETH !*</p></div>
                                 <div style={{display:'flex', justifyContent:'flex-end', marginRight: 13}}><p className="description" style={{color:'gray', fontSize: 11}}>*See roadmap</p></div>
                             
-                                <Rccontract />
+                                {/* <Rccontract /> */}
                             </div>
                         </div>
                     </div>
