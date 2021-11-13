@@ -145,6 +145,33 @@ export default function CustomizedTimeline() {
       <TimelineItem>
         <TimelineOppositeContent
           sx={{ m: 'auto 0' }}
+          variant="body2"
+          color="gray"
+        >
+          6666 mints
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector />
+          <TimelineDot color="secondary">
+            {/* <LaptopMacIcon /> */}
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <Typography variant="h6" component="span" color="white">
+            Golden rebuy
+          </Typography><br></br>
+          <Typography variant="subtitle" component="span" color="gray">
+            We'll offer <b>5 ETH</b> for each of<br></br>
+            the 4 golden crab minted
+           
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: 'auto 0' }}
           align="right"
           variant="body2"
           color="gray"

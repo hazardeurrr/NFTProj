@@ -26,7 +26,11 @@ import GoldenModel from '../elements/common/GoldenModel';
 import PlaneModel from '../elements/common/PlaneModel';
 import UpModel from '../elements/common/UpModel';
 import GifsList from '../elements/common/GifsList';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { convertNeSwToNwSe } from 'google-map-react';
 
 const SlideList = [
     {
@@ -38,6 +42,21 @@ const SlideList = [
     }
 ]
 const PortfolioLanding = () => {
+
+    const [count, setCount] = React.useState(1);
+
+    const incrementCount = () => {
+        let c = count + 1;
+        if(c > 0 && c <= 20)
+            setCount(c);
+    }
+    
+    const decrementCount = () => {
+        let c = count - 1;
+        if(c > 0 && c <= 20)
+            setCount(c);
+    }
+  
 
     let title = 'The Collection',   
         description = 'Raving Crabs is a collection of 6666 UNIQUE NFT collectibles on the Ethereum Blockchain.\nEach NFT contains an animated 3D crab with its own characteristics and rarity. Owning crabs give you access to the club, our private space where the rave is permanent, as well as member-only benefits. \n Our main goal is to build a strong and engaged community who loves memes and music. ';
@@ -255,16 +274,29 @@ const PortfolioLanding = () => {
                                             <ProgressBar striped variant="danger" now={0} />
                                             <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5>
                                         </div>
-                                        
-                                        {/* <button style={{marginTop : 40, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
-
+                                            <div style={{marginTop : 40}}>
+                                                <span style={{fontSize: 20, color:'gray', marginLeft: 10, marginRight: 10}}>Amount : </span>
+                                                <button onClick={incrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>+</span></button>
+                                                <span style={{fontSize: 25, color:'white', marginLeft: 10, marginRight: 10}}>{count}</span>
+                                                <button onClick={decrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>-</span></button>
+                                            </div>
+                                            <button style={{width: 350, height: 60, fontSize: 20}} disabled="true" type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
+                                            
                                     </div>
                                 </div>
                             </div>
+                            <div style={{marginTop: 50}}>
+                                <div style={{display:'flex', alignItems:'center'}}><h2 style={{color:'gray', fontSize: 35}}>Mint your Raving Crab now and get a chance to <span style={{color:'#f9014c', fontSize: 45, marginLeft: 10}}> WIN 5 ETH !</span></h2></div>
+                                <div style={{display:'flex'}}><p className="description" style={{color:'gray', fontSize: 21}}>If you mint one of our 4 ultra rare golden crab (like the Craby above), we will offer to buy it back for 5 ETH !*</p></div>
+                                <div style={{display:'flex', justifyContent:'flex-end', marginRight: 13}}><p className="description" style={{color:'gray', fontSize: 11}}>*See roadmap</p></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-            </div>         
+            </div>     
+           
+
 
    
 
