@@ -31,6 +31,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { convertNeSwToNwSe } from 'google-map-react';
+const Web3 = require('web3');
+const BN = require('bn.js');
 
 const SlideList = [
     {
@@ -64,6 +66,9 @@ const PortfolioLanding = () => {
     const connected = useSelector((state) => state.metamask_connected)
     const chainID = useSelector((state) => state.chainID)
     const userAddress = useSelector((state) => state.address)
+    const web3 = useSelector((state) => state.web3Instance)
+    const contract = useSelector((state) => state.contractInstance)
+    const totalMinted = useSelector((state) => state.totalMinted)
 
     const [open, setOpen] = React.useState(false);
     const [videoOpen, setVideoOpen] = React.useState(false);
@@ -76,16 +81,44 @@ const PortfolioLanding = () => {
         setOpen(false);
     };
 
-
-    const claimCard = () => {
-        console.log('claiming')
-        if(connected && userAddress !== undefined && chainID === '0x1'){
+    async function claimCard(){
+        if(connected && userAddress !== undefined && chainID === '0x4'){    // CHANGE THAT TO 0x1 FOR PRODUCTION !
             // mint the NFT
-            console.log('should mint now')
+            if(contract === undefined){
+                console.log("Error : the contract has not been found yet")
+            }
+            else {
+                let baseearly = new BN('60000000000000000')
+                let baselate = new BN('70000000000000000')
+                let finalval = baseearly
+                if(parseInt(totalMinted) + parseInt(count) <= 2222){
+                    finalval = baseearly.mul(new BN(count.toString()))
+                } else if(totalMinted > 2222) {
+                    finalval = baselate.mul(new BN(count.toString()))
+                } else {    // totalMinted + count > 2222 && totalMinted < 2222
+                    let nbr6 = 2222-parseInt(totalMinted)
+                    let nbr7 = parseInt(count) - nbr6
+                    finalval = baseearly.mul(new BN(nbr6.toString())).add(baselate.mul(new BN(nbr7.toString())))
+
+                }
+
+                contract.methods.mint(count).send({from : userAddress, value: finalval})
+                .on('transactionHash', function(hash){
+                    console.log("hash :" + hash)
+                    // this.setState({token: {txHash: hash}})
+                  })
+                  .on('confirmation', function(confirmationNumber, receipt) {
+                    // this.setState({token: {confirmationNumber: confirmationNumber}})
+                    console.Log("confirmation number : " + confirmationNumber)
+                  })
+                  .on('receipt', function(receipt){
+                      console.log("receipt : " + receipt)
+                  })
+            }
+            
         } else {
             handleDialogOpen()
         }
-        
     }
 
     const displayClubAccessPrevious = () => {
@@ -124,6 +157,41 @@ const PortfolioLanding = () => {
             </div>
             }
         }
+
+
+    const displayMintsLeft = () => {
+        if(totalMinted < 2202){
+            return <div>
+                <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
+                <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
+                <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
+                <br></br>
+                <h5 style={{fontSize: 20}}>{2222-totalMinted} Raving Crabs left @0.06Ξ</h5>
+                <ProgressBar striped variant="danger" animated now={totalMinted*100/2222} />
+            </div>
+        } else if(totalMinted < 2222 && totalMinted >= 2202){
+            return <div>
+            <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
+            <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
+            <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
+            <p className="description">Already minted : {totalMinted}</p>
+            <br></br>
+            <h5 style={{fontSize: 20}}>{2222-totalMinted} Raving Crabs left @0.06Ξ</h5>
+            <ProgressBar striped variant="danger" animated now={totalMinted*100/2222} />
+            <h5 style={{fontSize: 20, marginTop: 10}}>4444 Raving Crabs left @0.07Ξ</h5>
+        </div>
+        }
+        else {
+            return <div>
+                <h2 style={{fontSize: 35}}>Mint your Raving Crab</h2>
+                <h3 className="title" style={{color:'gray', fontSize: 25}}>{totalMinted} Raving Crabs have already been minted...</h3>
+                <p className="description">What are you waiting for ? Join the community ! Mint your Raving Crab(s) and RAVE with us !</p>
+                <br></br>
+                <h5 style={{fontSize: 20}}>{6666-totalMinted} Crabs left @0.07Ξ</h5>
+                <ProgressBar striped variant="danger" animated now={totalMinted*100/6666} />
+            </div>
+        }
+    }
 
     return (
 
@@ -265,14 +333,9 @@ const PortfolioLanding = () => {
                                 <div className="col-lg-7">
                                     <div className="about-inner inner">
                                         <div className="section-title">
-                                            <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
-                                            <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
-                                            <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
-                                            <br></br>
-                                            <h5 style={{fontSize: 20}}>2222 Crabs left @0.06Ξ</h5>
-
-                                            <ProgressBar striped variant="danger" now={0} />
-                                            <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5>
+                                            
+                                            {displayMintsLeft()}
+                                            {/* <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5> */}
                                         </div>
                                             <div style={{marginTop : 40}}>
                                                 <span style={{fontSize: 20, color:'gray', marginLeft: 10, marginRight: 10}}>Amount : </span>
@@ -280,7 +343,7 @@ const PortfolioLanding = () => {
                                                 <span style={{fontSize: 25, color:'white', marginLeft: 10, marginRight: 10}}>{count}</span>
                                                 <button onClick={decrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>-</span></button>
                                             </div>
-                                            <button style={{width: 350, height: 60, fontSize: 20}} disabled="true" type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
+                                            <button style={{width: 350, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
                                             
                                     </div>
                                 </div>

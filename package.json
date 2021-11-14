@@ -25,6 +25,7 @@
     "babel-plugin-named-asset-import": "^0.3.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react-app": "^9.1.0",
+    "bn.js": "^5.2.0",
     "bootstrap": "^5.1.1",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",

@@ -8,6 +8,9 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+import abi from '../../elements/abi';
+import contract_address from '../../elements/contract_address'
 const Web3 = require('web3');
 
 
@@ -15,13 +18,17 @@ const mapDispatchToProps = (dispatch) => ({
     chain: (i) => dispatch({ type: 'SET_CHAINID', id: i }),
     setaddress: (i) => dispatch({ type: 'SET_ADDRESS', id: i }),
     connection_status: (i) => {dispatch({ type: 'SET_CONNECTED', id: i }); console.log('dispatchin', i)},
+    setW3: (i) => dispatch({ type: 'SET_WEB3', id: i }),
+    setContract: (i) => dispatch({ type: 'SET_CONTRACT', id: i}),
+    setTokenNbr: (i) => dispatch({ type: 'SET_TOTALMINTED', id: i})
 });
 
 const mapStateToProps = state => {
     return {
         connected: state.metamask_connected,
         userAddress : state.address,
-        chainID: state.chainID
+        chainID: state.chainID,
+        web3 : state.web3Instance
     }
 }
 
@@ -82,8 +89,16 @@ class HeaderThree extends Component{
               console.error('Do you have multiple wallets installed?');
           }
           // Access the decentralized web!
+          let w3 = new Web3(window.ethereum)
+          this.props.setW3(w3)
+         
+          const contract_instance = await new w3.eth.Contract(abi.abi, contract_address.contract_address)
+          this.props.setContract(contract_instance)
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           this.props.chain(chainId)
+          let tokenNbr = await contract_instance.methods.totalSupply().call()
+          this.props.setTokenNbr(tokenNbr)
+
           if(chainId !== '0x1'){
               console.log("Please change your network to Ethereum Mainnet on Metamask")
           }
@@ -134,6 +149,7 @@ class HeaderThree extends Component{
               
           }
       }
+
   
       connect = () => {
           if(this.state.providerDetected){
