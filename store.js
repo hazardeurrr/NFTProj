@@ -9,7 +9,8 @@ const initialState = {
   chainID: '0x1',
   web3Instance: undefined,
   contractInstance : undefined,
-  totalMinted : 0
+  totalMinted : 0,
+  totalOwned : 0
 }
 
 
@@ -52,6 +53,12 @@ const reducer = (state = initialState, action) => {
           ...state,
           totalMinted : action.id
         }
+
+      case 'SET_TOTALOWNED':
+          return {
+            ...state,
+            totalOwned : action.id
+          }
     
     default:
       return state

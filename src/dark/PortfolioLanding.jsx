@@ -10,7 +10,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CustomizedTimeline from '../elements/common/Timeline';
@@ -31,6 +31,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { convertNeSwToNwSe } from 'google-map-react';
+import Scrollspy from 'react-scrollspy'
+import { CircularProgress } from '@mui/material';
+import { TrafficRounded } from '@material-ui/icons';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert from '@mui/material/Alert';
+
 const Web3 = require('web3');
 const BN = require('bn.js');
 
@@ -43,7 +51,27 @@ const SlideList = [
         buttonLink: ''
     }
 ]
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
 const PortfolioLanding = () => {
+
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const handleClickSnackbar = () => {
+    dialogClaimClose();
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
 
     const [count, setCount] = React.useState(1);
 
@@ -69,8 +97,15 @@ const PortfolioLanding = () => {
     const web3 = useSelector((state) => state.web3Instance)
     const contract = useSelector((state) => state.contractInstance)
     const totalMinted = useSelector((state) => state.totalMinted)
+    const tokensOwnedNbr = useSelector((state) => state.totalOwned)
 
     const [open, setOpen] = React.useState(false);
+    const [claimOpen, setClaimOpen] = React.useState(false);
+    const [claimConfirmedOpen, setClaimConfirmedOpen] = React.useState(false);
+
+    const [tx, setTx] = React.useState("");
+    const [errormsg, setErrormsg] = React.useState("unknown.");
+
     const [videoOpen, setVideoOpen] = React.useState(false);
 
     const handleDialogOpen = () => {
@@ -79,6 +114,26 @@ const PortfolioLanding = () => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+
+    const dialogClaimOpen = () => {
+        setClaimOpen(true);
+    };
+
+    const dialogClaimClose = () => {
+        setClaimOpen(false);
+        setTx("");
+    };
+
+    
+    const dialogClaimConfirmedOpen = () => {
+        dialogClaimClose();
+        setClaimConfirmedOpen(true);
+    };
+
+    const dialogClaimConfirmedClose = () => {
+        setClaimConfirmedOpen(false);
     };
 
     async function claimCard(){
@@ -104,15 +159,20 @@ const PortfolioLanding = () => {
 
                 contract.methods.mint(count).send({from : userAddress, value: finalval})
                 .on('transactionHash', function(hash){
+                    dialogClaimOpen()
                     console.log("hash :" + hash)
+                    setTx(hash)
                     // this.setState({token: {txHash: hash}})
                   })
-                  .on('confirmation', function(confirmationNumber, receipt) {
+                  .on("receipt", function(receipt) {
                     // this.setState({token: {confirmationNumber: confirmationNumber}})
-                    console.Log("confirmation number : " + confirmationNumber)
+                    console.log(receipt)
+                    dialogClaimConfirmedOpen()
                   })
-                  .on('receipt', function(receipt){
-                      console.log("receipt : " + receipt)
+                  .on("error", function(error) {
+                    setErrormsg(error.code + " : " + error.message)
+                    handleClickSnackbar()
+                    console.log(error);
                   })
             }
             
@@ -133,30 +193,61 @@ const PortfolioLanding = () => {
         </div>
     }
 
+    
     const displayClubAccess = () => {
-        if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHECKER ICI SI L'ADRESSE POSSEDE DES NFTS OU NON
-            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-            <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
-            <div style={{justifyContent:'center'}}>
-                <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
-                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
-                {/* <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
-
-            </div>
-        </div>
-        }
-        else {
-            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+        if(!connected || userAddress === undefined || chainID !== '0x4'){ // CHANGER EN '0x1'
+            return displayClosedClub()
+        } else {
+            if(tokensOwnedNbr <= 0){
+                return displayClosedClub()
+            }  else {
+                return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
                 <img src="/assets/images/portfolio/the_club_opened.jpg" alt='crab rave club opened'/>
                 <div style={{justifyContent:'center'}}>
                     <h2 style={{color: 'green'}}>ACCESS AUTHORIZED</h2>
                     <h4><b>Only members can enter The Club.</b></h4>
                     <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/the_club">Enter The Club</a>
-
+        
                 </div>
             </div>
+                }
             }
         }
+
+
+    const displayConfirmModal = () => {
+        if(true){
+            return <div style={{justifyContent:'center'}}>
+            <DialogTitle id="alert-dialog-title">Your Raving Crab is hatching...</DialogTitle>
+            <DialogContent>
+
+                <CircularProgress style={{marginTop: 20, marginBottom: 20}}/>
+
+            <DialogContentText id="alert-dialog-description">
+            Transaction Hash : </DialogContentText>
+            <DialogContentText id="alert-dialog-description"><a href={`https://etherscan.io/tx/${tx}`} target="_blank">{tx}</a></DialogContentText>
+            </DialogContent></div>
+        }
+        else {
+
+
+            }
+        }
+
+
+
+    const displayClosedClub = () => {
+
+                return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
+                <div style={{justifyContent:'center'}}>
+                    <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
+                    <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
+                    {/* <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
+    
+                </div>
+            </div>
+    }
 
 
     const displayMintsLeft = () => {
@@ -230,9 +321,17 @@ const PortfolioLanding = () => {
                                             <h2>Enter The Club and RAVE</h2>
                                             
                                             {/* <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
-                                            <div style={{display: 'flex', marginTop: 25}}>
+                                            {/* <div style={{display: 'flex', marginTop: 25}}>
                                                 <a target='_blank' href='https://discord.gg/mc4ycfredU' style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></a>
                                                 <a target='_blank' href='https://twitter.com/ravingcrabs' style={{marginLeft: 10}} className="rn-button-style--2"><span><FaTwitter /> Twitter</span></a>
+                                            </div> */}
+
+                                            <button style={{width: 350, height: 60, fontSize: 20, marginTop: 25}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
+                                            <div id="mint" >
+                                                <span style={{fontSize: 20, color:'gray', marginLeft: 10, marginRight: 10}}>Amount : </span>
+                                                <button onClick={incrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>+</span></button>
+                                                <span style={{fontSize: 25, color:'white', marginLeft: 10, marginRight: 10}}>{count}</span>
+                                                <button onClick={decrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>-</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -244,6 +343,12 @@ const PortfolioLanding = () => {
                 </div>
             </div>
             {/* End Slider Area   */} 
+
+            <Snackbar open={openSnackbar} autoHideDuration={12000} onClose={handleCloseSnackbar}>
+                <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                Error {errormsg}
+                </Alert>
+            </Snackbar>
 
                 <Dialog
                     open={open}
@@ -259,6 +364,45 @@ const PortfolioLanding = () => {
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleClose} color="primary">
+                        Close
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+
+
+                <Dialog
+                    open={claimOpen}
+                    onClose={dialogClaimClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    {displayConfirmModal()}
+                    <DialogActions>
+                    <Button onClick={dialogClaimClose} color="primary">
+                        Close
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+
+                <Dialog
+                    open={claimConfirmedOpen}
+                    onClose={dialogClaimConfirmedClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">Your Crab is raving in The Club !</DialogTitle>
+                    <DialogContent>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                        <img src="/assets/images/portfolio/the_club_opened.jpg" alt='crab rave club opened'/>
+                        <div style={{justifyContent:'center'}}>
+                            <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/the_club">Enter The Club</a>
+                        </div>
+                    </div>
+
+                    
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={dialogClaimConfirmedClose} color="primary">
                         Close
                     </Button>
                     </DialogActions>
@@ -337,7 +481,7 @@ const PortfolioLanding = () => {
                                             {displayMintsLeft()}
                                             {/* <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5> */}
                                         </div>
-                                            <div style={{marginTop : 40}}>
+                                            <div id="mint" style={{marginTop : 40}}>
                                                 <span style={{fontSize: 20, color:'gray', marginLeft: 10, marginRight: 10}}>Amount : </span>
                                                 <button onClick={incrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>+</span></button>
                                                 <span style={{fontSize: 25, color:'white', marginLeft: 10, marginRight: 10}}>{count}</span>
@@ -384,7 +528,7 @@ const PortfolioLanding = () => {
             
 
              {/* Start About Area */}
-            <div id="about" className="fix">
+            <div id="about2" className="fix">
                 <div className="about-area ptb--120  bg_color--1">
                     <div className="about-wrapper">
                         <div className="container">
@@ -441,7 +585,7 @@ const PortfolioLanding = () => {
                                     </div>
                                 </div>
                             </div>
-                            {displayClubAccessPrevious()}
+                            {displayClubAccess()}
                             
                             {/* <div className="row">
                                 <PortfolioList styevariation="text-center mt--40" column="col-lg-4 col-md-6 col-sm-6 col-12" item="7" />

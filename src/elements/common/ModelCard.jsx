@@ -54,7 +54,7 @@ const ModelCard = (props) => {
       <OrbitControls makeDefault/>
 
       <Suspense fallback={null}>
-        <Stage  contactShadowOpacity={props.shadows} intensity={props.intensity}>
+        <Stage  contactShadowOpacity={0}>
           <Model url={props.url} dance={props.dance}/>
         </Stage>
       </Suspense>

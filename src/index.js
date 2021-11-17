@@ -18,6 +18,7 @@ import { BrowserRouter, Switch, Route  } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import { useStore } from '../store'
 import { Provider } from 'react-redux'
+import ModelDetailed from './component/ModelDetailed';
 
 
 
@@ -37,7 +38,8 @@ class Root extends Component{
 
                         {/* Element Layot */}
                         <Route exact path={`${process.env.PUBLIC_URL}/the_club`} component={PortfolioDetails}/>
-                        
+                        <Route exact path={`${process.env.PUBLIC_URL}/model_detailed`} component={ModelDetailed}/>
+
                         <Route path={`${process.env.PUBLIC_URL}/404`} component={error404}/>
                         <Route component={error404}/>
 

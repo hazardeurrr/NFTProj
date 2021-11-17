@@ -20,7 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
     connection_status: (i) => {dispatch({ type: 'SET_CONNECTED', id: i }); console.log('dispatchin', i)},
     setW3: (i) => dispatch({ type: 'SET_WEB3', id: i }),
     setContract: (i) => dispatch({ type: 'SET_CONTRACT', id: i}),
-    setTokenNbr: (i) => dispatch({ type: 'SET_TOTALMINTED', id: i})
+    setTokenNbr: (i) => dispatch({ type: 'SET_TOTALMINTED', id: i}),
+    setTotalOwned: (i) => dispatch({ type: 'SET_TOTALOWNED', id: i})
+
 });
 
 const mapStateToProps = state => {
@@ -28,7 +30,8 @@ const mapStateToProps = state => {
         connected: state.metamask_connected,
         userAddress : state.address,
         chainID: state.chainID,
-        web3 : state.web3Instance
+        web3 : state.web3Instance,
+        contract: state.contractInstance
     }
 }
 
@@ -99,6 +102,7 @@ class HeaderThree extends Component{
           let tokenNbr = await contract_instance.methods.totalSupply().call()
           this.props.setTokenNbr(tokenNbr)
 
+
           if(chainId !== '0x1'){
               console.log("Please change your network to Ethereum Mainnet on Metamask")
           }
@@ -135,7 +139,7 @@ class HeaderThree extends Component{
               console.log("in accounts changed")
               this.props.connection_status(true)
               this.props.setaddress(accounts[0])
-  
+              this.findNbrTokensOwned(accounts[0])
              // var web3 = new Web3(window.ethereum)
             //   const bbst_contract = new web3.eth.Contract(bbstabi.abi, '0xDd1Ad9A21Ce722C151A836373baBe42c868cE9a4');
             //   bbst_contract.methods.balanceOf(accounts[0]).call().then(response => {
@@ -149,6 +153,15 @@ class HeaderThree extends Component{
               
           }
       }
+
+      async findNbrTokensOwned(addr){
+        let res = await this.props.contract.methods.balanceOf(addr).call().then(data => 
+            {
+                this.props.setTotalOwned(data)
+            })
+        return res
+    }
+
 
   
       connect = () => {
