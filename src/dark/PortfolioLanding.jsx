@@ -38,6 +38,7 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import MuiAlert from '@mui/material/Alert';
+import contract_address from '../elements/contract_address';
 
 const Web3 = require('web3');
 const BN = require('bn.js');
@@ -137,7 +138,7 @@ const PortfolioLanding = () => {
     };
 
     async function claimCard(){
-        if(connected && userAddress !== undefined && chainID === '0x4'){    // CHANGE THAT TO 0x1 FOR PRODUCTION !
+        if(connected && userAddress !== undefined && chainID === '0x1'){    // CHANGE THAT TO 0x1 FOR PRODUCTION !
             // mint the NFT
             if(contract === undefined){
                 console.log("Error : the contract has not been found yet")
@@ -157,7 +158,10 @@ const PortfolioLanding = () => {
 
                 }
 
-                contract.methods.mint(count).send({from : userAddress, value: finalval})
+                let gasLimit= (159258+116929*(count-1))
+                let gl = gasLimit + parseInt(gasLimit * 0.05)
+
+                contract.methods.mint(count).send({from : userAddress, value: finalval,  gasLimit: gl})
                 .on('transactionHash', function(hash){
                     dialogClaimOpen()
                     console.log("hash :" + hash)
@@ -195,7 +199,7 @@ const PortfolioLanding = () => {
 
     
     const displayClubAccess = () => {
-        if(!connected || userAddress === undefined || chainID !== '0x4'){ // CHANGER EN '0x1'
+        if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHANGER EN '0x1'
             return displayClosedClub()
         } else {
             if(tokensOwnedNbr <= 0){
@@ -284,6 +288,19 @@ const PortfolioLanding = () => {
         }
     }
 
+    async function estimateG(){
+        contract.methods.mint([count]).estimateGas(
+            {
+              from: userAddress,
+              to: contract_address.contract_address,
+              gas: 500000
+            }).then(function(gasAmount){
+                console.log(gasAmount)
+            }).catch(function(error){
+                console.log(error.message)
+            });
+    }
+
     return (
 
         
@@ -344,7 +361,7 @@ const PortfolioLanding = () => {
             </div>
             {/* End Slider Area   */} 
 
-            <Snackbar open={openSnackbar} autoHideDuration={12000} onClose={handleCloseSnackbar}>
+            <Snackbar open={openSnackbar} autoHideDuration={9000} onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
                 Error {errormsg}
                 </Alert>
@@ -514,7 +531,21 @@ const PortfolioLanding = () => {
                             <div className="inner text-center">
                                 <span>JOIN THE CLUB</span>
                                 <h2>LET THE RAVE BEGIN</h2>
-                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Release on Nov. 17th 2021</span></button>
+                                <span style={{
+                                        
+                                            color: '#c6c9d8',
+                                            fontSize: '22px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing :2,
+                                            border: '2px solid #b1b4c1',
+                                            padding : '15px 40px',
+                                            borderRadius : 6,
+                                            display: 'inline-block',
+                                            fontWeight: 500,
+                                            transition: 0.3
+                                            
+                            
+                                }}>MINT IS LIVE</span>
 
                                 {/* <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button> */}
                             </div>

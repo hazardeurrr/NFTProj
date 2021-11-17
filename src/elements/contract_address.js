@@ -1,4 +1,4 @@
-const contract_address = "0xA7e3B2D6b301752000a60fdFC268Aab24B62df55"
+const contract_address = "0xD8577b5D18Ff953B4249028847b68B6b693366c4"
 module.exports = {
   contract_address
 }

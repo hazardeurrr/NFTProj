@@ -36,7 +36,7 @@ const PortfolioDetails = () => {
    
 
     const displayClubAccess = () => {
-        if(!connected || userAddress === undefined || chainID !== '0x4'){ // CHANGER EN '0x1'
+        if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHANGER EN '0x1'
             return displayClosedClub()
         } else {
             if(tokensOwnedNbr <= 0){
@@ -82,7 +82,7 @@ const PortfolioDetails = () => {
 
     return (
         <div className="active-dark">
-            <Helmet pageTitle="Portfolio Landing" />
+            <Helmet pageTitle="The Club" />
 
             <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
 

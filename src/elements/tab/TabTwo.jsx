@@ -82,6 +82,9 @@ class TabsTwo extends Component{
                                                <li>
                                                    Official smart contract is : <a target="_blank" href={`https://etherscan.io/address/${contract_address.contract_address}`}><b><i>{contract_address.contract_address}</i></b></a>
                                                </li>
+                                               <li>
+                                                   Official Opensea page : <a target="_blank" href="https://opensea.io/collection/ravingcrabs"><b><i>https://opensea.io/collection/ravingcrabs</i></b></a>
+                                               </li>
                                            </ul>
                                        </div>
                                     </TabPanel>

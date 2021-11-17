@@ -147,7 +147,7 @@ class PortfolioList extends Component {
                              <div className="content">
                                  <div className="inner">
                                  <div style={{display:'flex', justifyContent:'center'}}><h4>{item.name}</h4>
-                                 <a href={`https://testnets.opensea.io/assets/${contract_address.contract_address}/${item.name.substring(1)}`}>
+                                 <a href={`https://opensea.io/assets/${contract_address.contract_address}/${item.name.substring(1)}`}>
                                  <img style={{height: 40, marginLeft: 20, marginTop: -3}} src='/assets/images/opensea.png' alt="opensea"/></a>    
                                 </div>
                                 <NavLink
@@ -173,7 +173,7 @@ class PortfolioList extends Component {
                                         ))}
                                     </div> */}
                                      {/* <div className="portfolio-button">
-                                         <a className="rn-btn" href={`https://testnets.opensea.io/assets/${contract_address.contract_address}/${item.name.substring(1)}`}>View on Opensea</a>    
+                                         <a className="rn-btn" href={`https://opensea.io/assets/${contract_address.contract_address}/${item.name.substring(1)}`}>View on Opensea</a>    
                                      </div> */}
                                  </div>
                              </div>

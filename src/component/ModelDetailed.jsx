@@ -67,6 +67,8 @@ const ModelDetailed = (props) => {
     const displayPage = () => {
       if(location.aboutProps === undefined){
         return <>
+                    <Helmet pageTitle="The Club" />
+
         <HeaderThree homeLink="/" logo="symbol-dark" color="color-black"/>
             {/* Start Page Error  */}
             <div className="error-page-inner bg_color--4">
@@ -133,8 +135,8 @@ const ModelDetailed = (props) => {
                                             variant="outlined" />
                                         ))}
                                     </div>
-                                    <div style={{display: 'flex'}}><a style={{marginTop: 50}} target="_blank" href={`https://testnets.opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`}>
-                                    <h4>View on Opensea </h4></a><a style={{marginTop: 50}} target="_blank" href={`https://testnets.opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`}><img style={{height: 40, marginLeft: 20, marginTop: -5}} src='/assets/images/opensea.png' alt="opensea"/></a></div>
+                                    <div style={{display: 'flex'}}><a style={{marginTop: 50}} target="_blank" href={`https://opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`}>
+                                    <h4>View on Opensea </h4></a><a style={{marginTop: 50}} target="_blank" href={`https://opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`}><img style={{height: 40, marginLeft: 20, marginTop: -5}} src='/assets/images/opensea.png' alt="opensea"/></a></div>
                                 </div>             
                             </div>
                         </div>
