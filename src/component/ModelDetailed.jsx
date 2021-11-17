@@ -137,6 +137,8 @@ const ModelDetailed = (props) => {
                                     </div>
                                     <div style={{display: 'flex'}}><a style={{marginTop: 50}} target="_blank" href={`https://opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`}>
                                     <h4>View on Opensea </h4></a><a style={{marginTop: 50}} target="_blank" href={`https://opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`}><img style={{height: 40, marginLeft: 20, marginTop: -5}} src='/assets/images/opensea.png' alt="opensea"/></a></div>
+                                
+                                    <a style={{marginTop: 100}} target="_blank" href={`https://twitter.com/share?text=Just got my new Raving Crab NFT ! Check it out ! @ravingcrabs \n&url=https://opensea.io/assets/${contract_address.contract_address}/${location.aboutProps.token.name.substring(1)}`} className="rn-btn">Share on Twitter</a>
                                 </div>             
                             </div>
                         </div>
@@ -150,15 +152,15 @@ const ModelDetailed = (props) => {
             </div>
         {/* End About Area  */}
 
-        <FooterTwo />
         {/* Start Back To Top */}
         <div className="backto-top">
-            <ScrollToTop showUnder={160}>
-                <FiChevronUp />
-            </ScrollToTop>
-        </div>
-        {/* End Back To Top */}
-        
+                <ScrollToTop showUnder={160}>
+                    <FiChevronUp />
+                </ScrollToTop>
+            </div>
+            {/* End Back To Top */}
+            <Footer /> 
+
     </div>
       }
     }
