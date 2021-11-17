@@ -4,6 +4,19 @@
 /*--------------------------
     Color Darker Version  
 ----------------------------*/
+.large-only {
+    @media only screen and (min-width: 992px) and (max-width:1199px) {
+        display: none;
+    }
+    @media #{$md-layout}{
+        display: none;
+    }
+    @media #{$sm-layout} {
+        display:none;
+    }
+
+}
+
 
 .play-button {
     margin-top: 12px
@@ -141,6 +154,8 @@
     }
 
     @media #{$md-layout} {
+        
+
         .play-button {
           margin-top: 15px
         }

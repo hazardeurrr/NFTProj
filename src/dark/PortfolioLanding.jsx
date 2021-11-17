@@ -10,7 +10,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CustomizedTimeline from '../elements/common/Timeline';
@@ -31,7 +31,17 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { convertNeSwToNwSe } from 'google-map-react';
-import Rccontract from '../elements/Rccontract';
+import Scrollspy from 'react-scrollspy'
+import { CircularProgress } from '@mui/material';
+import { TrafficRounded } from '@material-ui/icons';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert from '@mui/material/Alert';
+import contract_address from '../elements/contract_address';
+
+const Web3 = require('web3');
+const BN = require('bn.js');
 
 const SlideList = [
     {
@@ -42,7 +52,27 @@ const SlideList = [
         buttonLink: ''
     }
 ]
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
 const PortfolioLanding = () => {
+
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const handleClickSnackbar = () => {
+    dialogClaimClose();
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
 
     const [count, setCount] = React.useState(1);
 
@@ -65,8 +95,18 @@ const PortfolioLanding = () => {
     const connected = useSelector((state) => state.metamask_connected)
     const chainID = useSelector((state) => state.chainID)
     const userAddress = useSelector((state) => state.address)
+    const web3 = useSelector((state) => state.web3Instance)
+    const contract = useSelector((state) => state.contractInstance)
+    const totalMinted = useSelector((state) => state.totalMinted)
+    const tokensOwnedNbr = useSelector((state) => state.totalOwned)
 
     const [open, setOpen] = React.useState(false);
+    const [claimOpen, setClaimOpen] = React.useState(false);
+    const [claimConfirmedOpen, setClaimConfirmedOpen] = React.useState(false);
+
+    const [tx, setTx] = React.useState("");
+    const [errormsg, setErrormsg] = React.useState("unknown.");
+
     const [videoOpen, setVideoOpen] = React.useState(false);
 
     const handleDialogOpen = () => {
@@ -78,15 +118,71 @@ const PortfolioLanding = () => {
     };
 
 
-    const claimCard = () => {
-        console.log('claiming')
-        if(connected && userAddress !== undefined && chainID === '0x1'){
+    const dialogClaimOpen = () => {
+        setClaimOpen(true);
+    };
+
+    const dialogClaimClose = () => {
+        setClaimOpen(false);
+        setTx("");
+    };
+
+    
+    const dialogClaimConfirmedOpen = () => {
+        dialogClaimClose();
+        setClaimConfirmedOpen(true);
+    };
+
+    const dialogClaimConfirmedClose = () => {
+        setClaimConfirmedOpen(false);
+    };
+
+    async function claimCard(){
+        if(connected && userAddress !== undefined && chainID === '0x1'){    // CHANGE THAT TO 0x1 FOR PRODUCTION !
             // mint the NFT
-            console.log('should mint now')
+            if(contract === undefined){
+                console.log("Error : the contract has not been found yet")
+            }
+            else {
+                let baseearly = new BN('60000000000000000')
+                let baselate = new BN('70000000000000000')
+                let finalval = baseearly
+                if(parseInt(totalMinted) + parseInt(count) <= 2222){
+                    finalval = baseearly.mul(new BN(count.toString()))
+                } else if(totalMinted > 2222) {
+                    finalval = baselate.mul(new BN(count.toString()))
+                } else {    // totalMinted + count > 2222 && totalMinted < 2222
+                    let nbr6 = 2222-parseInt(totalMinted)
+                    let nbr7 = parseInt(count) - nbr6
+                    finalval = baseearly.mul(new BN(nbr6.toString())).add(baselate.mul(new BN(nbr7.toString())))
+
+                }
+
+                let gasLimit= (159258+116929*(count-1))
+                let gl = gasLimit + parseInt(gasLimit * 0.05)
+
+                contract.methods.mint(count).send({from : userAddress, value: finalval,  gasLimit: gl})
+                .on('transactionHash', function(hash){
+                    dialogClaimOpen()
+                    console.log("hash :" + hash)
+                    setTx(hash)
+                    // this.setState({token: {txHash: hash}})
+                  })
+                  .on("receipt", function(receipt) {
+                    // this.setState({token: {confirmationNumber: confirmationNumber}})
+                    console.log(receipt)
+                    dialogClaimConfirmedOpen()
+                  })
+                  .on("error", function(error) {
+                    setErrormsg(error.code + " : " + error.message)
+                    handleClickSnackbar()
+                    console.log(error);
+                  })
+            }
+            
         } else {
             handleDialogOpen()
         }
-        
     }
 
     const displayClubAccessPrevious = () => {
@@ -101,30 +197,109 @@ const PortfolioLanding = () => {
         </div>
     }
 
+    
     const displayClubAccess = () => {
-        if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHECKER ICI SI L'ADRESSE POSSEDE DES NFTS OU NON
-            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-            <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
-            <div style={{justifyContent:'center'}}>
-                <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
-                <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
-                {/* <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
-
-            </div>
-        </div>
-        }
-        else {
-            return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+        if(!connected || userAddress === undefined || chainID !== '0x1'){ // CHANGER EN '0x1'
+            return displayClosedClub()
+        } else {
+            if(tokensOwnedNbr <= 0){
+                return displayClosedClub()
+            }  else {
+                return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
                 <img src="/assets/images/portfolio/the_club_opened.jpg" alt='crab rave club opened'/>
                 <div style={{justifyContent:'center'}}>
                     <h2 style={{color: 'green'}}>ACCESS AUTHORIZED</h2>
                     <h4><b>Only members can enter The Club.</b></h4>
                     <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/the_club">Enter The Club</a>
-
+        
                 </div>
             </div>
+                }
             }
         }
+
+
+    const displayConfirmModal = () => {
+        if(true){
+            return <div style={{justifyContent:'center'}}>
+            <DialogTitle id="alert-dialog-title">Your Raving Crab is hatching...</DialogTitle>
+            <DialogContent>
+
+                <CircularProgress style={{marginTop: 20, marginBottom: 20}}/>
+
+            <DialogContentText id="alert-dialog-description">
+            Transaction Hash : </DialogContentText>
+            <DialogContentText id="alert-dialog-description"><a href={`https://etherscan.io/tx/${tx}`} target="_blank">{tx}</a></DialogContentText>
+            </DialogContent></div>
+        }
+        else {
+
+
+            }
+        }
+
+
+
+    const displayClosedClub = () => {
+
+                return <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <img src="/assets/images/portfolio/the_club.jpg" alt='crab rave club'/>
+                <div style={{justifyContent:'center'}}>
+                    <h2 style={{color: 'red'}}>ACCESS DENIED</h2>
+                    <h4><b>Only members can enter The Club.</b></h4><p style={{color:'white'}}>1. Connect your Metamask wallet<br></br>2. Get at least 1 Raving Crab<br></br>3. Enter The Club<br></br>4. Rave.</p>
+                    {/* <button style={{marginTop : 10, width: 400, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab</button> */}
+    
+                </div>
+            </div>
+    }
+
+
+    const displayMintsLeft = () => {
+        if(totalMinted < 2202){
+            return <div>
+                <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
+                <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
+                <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
+                <br></br>
+                <h5 style={{fontSize: 20}}>{2222-totalMinted} Raving Crabs left @0.06Ξ</h5>
+                <ProgressBar striped variant="danger" animated now={totalMinted*100/2222} />
+            </div>
+        } else if(totalMinted < 2222 && totalMinted >= 2202){
+            return <div>
+            <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
+            <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
+            <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
+            <p className="description">Already minted : {totalMinted}</p>
+            <br></br>
+            <h5 style={{fontSize: 20}}>{2222-totalMinted} Raving Crabs left @0.06Ξ</h5>
+            <ProgressBar striped variant="danger" animated now={totalMinted*100/2222} />
+            <h5 style={{fontSize: 20, marginTop: 10}}>4444 Raving Crabs left @0.07Ξ</h5>
+        </div>
+        }
+        else {
+            return <div>
+                <h2 style={{fontSize: 35}}>Mint your Raving Crab</h2>
+                <h3 className="title" style={{color:'gray', fontSize: 25}}>{totalMinted} Raving Crabs have already been minted...</h3>
+                <p className="description">What are you waiting for ? Join the community ! Mint your Raving Crab(s) and RAVE with us !</p>
+                <br></br>
+                <h5 style={{fontSize: 20}}>{6666-totalMinted} Crabs left @0.07Ξ</h5>
+                <ProgressBar striped variant="danger" animated now={totalMinted*100/6666} />
+            </div>
+        }
+    }
+
+    async function estimateG(){
+        contract.methods.mint([count]).estimateGas(
+            {
+              from: userAddress,
+              to: contract_address.contract_address,
+              gas: 500000
+            }).then(function(gasAmount){
+                console.log(gasAmount)
+            }).catch(function(error){
+                console.log(error.message)
+            });
+    }
 
     return (
 
@@ -163,9 +338,17 @@ const PortfolioLanding = () => {
                                             <h2>Enter The Club and RAVE</h2>
                                             
                                             {/* <button style={{marginTop : 10, width: 300, height: 80, fontSize: 27}} type="submit" className="rn-btn" onClick={claimCard}>Mint your crab</button> */}
-                                            <div style={{display: 'flex', marginTop: 25}}>
+                                            {/* <div style={{display: 'flex', marginTop: 25}}>
                                                 <a target='_blank' href='https://discord.gg/mc4ycfredU' style={{marginRight: 10}} className="rn-button-style--2"><span><FaDiscord /> Discord</span></a>
                                                 <a target='_blank' href='https://twitter.com/ravingcrabs' style={{marginLeft: 10}} className="rn-button-style--2"><span><FaTwitter /> Twitter</span></a>
+                                            </div> */}
+
+                                            <button style={{width: 350, height: 60, fontSize: 20, marginTop: 25}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
+                                            <div id="mint" >
+                                                <span style={{fontSize: 20, color:'gray', marginLeft: 10, marginRight: 10}}>Amount : </span>
+                                                <button onClick={incrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>+</span></button>
+                                                <span style={{fontSize: 25, color:'white', marginLeft: 10, marginRight: 10}}>{count}</span>
+                                                <button onClick={decrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>-</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -177,6 +360,12 @@ const PortfolioLanding = () => {
                 </div>
             </div>
             {/* End Slider Area   */} 
+
+            <Snackbar open={openSnackbar} autoHideDuration={9000} onClose={handleCloseSnackbar}>
+                <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                Error {errormsg}
+                </Alert>
+            </Snackbar>
 
                 <Dialog
                     open={open}
@@ -192,6 +381,45 @@ const PortfolioLanding = () => {
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleClose} color="primary">
+                        Close
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+
+
+                <Dialog
+                    open={claimOpen}
+                    onClose={dialogClaimClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    {displayConfirmModal()}
+                    <DialogActions>
+                    <Button onClick={dialogClaimClose} color="primary">
+                        Close
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+
+                <Dialog
+                    open={claimConfirmedOpen}
+                    onClose={dialogClaimConfirmedClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">Your Crab is raving in The Club !</DialogTitle>
+                    <DialogContent>
+                    <div style={{display: 'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                        <img src="/assets/images/portfolio/the_club_opened.jpg" alt='crab rave club opened'/>
+                        <div style={{justifyContent:'center'}}>
+                            <a style={{marginTop: 10, fontSize: 20}} className="rn-btn" href="/the_club">Enter The Club</a>
+                        </div>
+                    </div>
+
+                    
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={dialogClaimConfirmedClose} color="primary">
                         Close
                     </Button>
                     </DialogActions>
@@ -266,22 +494,17 @@ const PortfolioLanding = () => {
                                 <div className="col-lg-7">
                                     <div className="about-inner inner">
                                         <div className="section-title">
-                                            <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
-                                            <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
-                                            <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
-                                            <br></br>
-                                            <h5 style={{fontSize: 20}}>2222 Crabs left @0.06Ξ</h5>
-
-                                            <ProgressBar striped variant="danger" now={0} />
-                                            <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5>
+                                            
+                                            {displayMintsLeft()}
+                                            {/* <h5 style={{color:'red', fontSize: 22, marginTop: 5}}>LAUNCH ON NOVEMBER 17th 2021</h5> */}
                                         </div>
-                                            <div style={{marginTop : 40}}>
+                                            <div id="mint" style={{marginTop : 40}}>
                                                 <span style={{fontSize: 20, color:'gray', marginLeft: 10, marginRight: 10}}>Amount : </span>
                                                 <button onClick={incrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>+</span></button>
                                                 <span style={{fontSize: 25, color:'white', marginLeft: 10, marginRight: 10}}>{count}</span>
                                                 <button onClick={decrementCount} style={{fontSize: 25, color:'white', height: 30, width : 30, border: 'none'}}><span style={{color:'gray'}}>-</span></button>
                                             </div>
-                                            <button style={{width: 350, height: 60, fontSize: 20}} disabled="true" type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
+                                            <button style={{width: 350, height: 60, fontSize: 20}} type="submit" className="rn-btn" onClick={claimCard}>Mint your Raving Crab(s)</button>
                                             
                                     </div>
                                 </div>
@@ -310,7 +533,21 @@ const PortfolioLanding = () => {
                             <div className="inner text-center">
                                 <span>JOIN THE CLUB</span>
                                 <h2>LET THE RAVE BEGIN</h2>
-                                <button disabled="true" className="rn-button-style--2" href="/contact"><span>Release on Nov. 17th 2021</span></button>
+                                <span style={{
+                                        
+                                            color: '#c6c9d8',
+                                            fontSize: '22px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing :2,
+                                            border: '2px solid #b1b4c1',
+                                            padding : '15px 40px',
+                                            borderRadius : 6,
+                                            display: 'inline-block',
+                                            fontWeight: 500,
+                                            transition: 0.3
+                                            
+                            
+                                }}>MINT IS LIVE</span>
 
                                 {/* <button disabled="true" className="rn-button-style--2" href="/contact"><span>Mint your raving crab</span></button> */}
                             </div>
@@ -324,7 +561,7 @@ const PortfolioLanding = () => {
             
 
              {/* Start About Area */}
-            <div id="about" className="fix">
+            <div id="about2" className="fix">
                 <div className="about-area ptb--120  bg_color--1">
                     <div className="about-wrapper">
                         <div className="container">
@@ -381,7 +618,7 @@ const PortfolioLanding = () => {
                                     </div>
                                 </div>
                             </div>
-                            {displayClubAccessPrevious()}
+                            {displayClubAccess()}
                             
                             {/* <div className="row">
                                 <PortfolioList styevariation="text-center mt--40" column="col-lg-4 col-md-6 col-sm-6 col-12" item="7" />

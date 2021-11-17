@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {connect} from 'react-redux'
+import contract_address from "../contract_address";
+
+const mapStateToProps = state => {
+    return {
+        totalMinted : state.totalMinted,
+    }
+}
 
 class TabsTwo extends Component{
-    render(){
+
+    
+    render(){        
         let 
         tab1 = "Specs",
         tab2 = "Stats",
         tab3 = "Technical Details";
-        const { tabStyle } = this.props
+        const tabStyle = this.props.tabStyle
         return(
             <div>
                 {/* Start Tabs Area */}
@@ -46,7 +56,7 @@ class TabsTwo extends Component{
                                                     <b>Number of Crabs </b> : 6666
                                                 </li>
                                                 <li>
-                                                    <b>Crabs left to be claimed </b> : 6666
+                                                    <b>Crabs left to be claimed </b> : {6666-this.props.totalMinted}
                                                     {/* See on the contract how many are already minted here */}
                                                 </li>
                                                
@@ -70,7 +80,10 @@ class TabsTwo extends Component{
                                                    Metadata is hosted on IPFS (decentralized).
                                                </li>
                                                <li>
-                                                   Official smart contract is : <a href="https://etherscan.io/address/0x0000000000000"><b><i>Will be revealed once deployed</i></b></a>
+                                                   Official smart contract is : <a target="_blank" href={`https://etherscan.io/address/${contract_address.contract_address}`}><b><i>{contract_address.contract_address}</i></b></a>
+                                               </li>
+                                               <li>
+                                                   Official Opensea page : <a target="_blank" href="https://opensea.io/collection/ravingcrabs"><b><i>https://opensea.io/collection/ravingcrabs</i></b></a>
                                                </li>
                                            </ul>
                                        </div>
@@ -88,5 +101,6 @@ class TabsTwo extends Component{
 }
 
 
-
-export default TabsTwo;
+export default connect(
+    mapStateToProps
+)(TabsTwo);

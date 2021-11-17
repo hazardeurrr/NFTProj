@@ -7,6 +7,10 @@ const initialState = {
   address: undefined,
   metamask_connected: false,
   chainID: '0x1',
+  web3Instance: undefined,
+  contractInstance : undefined,
+  totalMinted : 0,
+  totalOwned : 0
 }
 
 
@@ -31,6 +35,30 @@ const reducer = (state = initialState, action) => {
         ...state,
         chainID: action.id
       }
+
+    case 'SET_WEB3':
+      return {
+        ...state,
+        web3Instance: action.id
+      }
+
+      case 'SET_CONTRACT':
+        return {
+          ...state,
+          contractInstance: action.id
+        }
+
+      case 'SET_TOTALMINTED':
+        return {
+          ...state,
+          totalMinted : action.id
+        }
+
+      case 'SET_TOTALOWNED':
+          return {
+            ...state,
+            totalOwned : action.id
+          }
     
     default:
       return state
