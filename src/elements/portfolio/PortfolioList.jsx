@@ -109,12 +109,12 @@ class PortfolioList extends Component {
             let properties = ''
             let dna = ''
             let promise = this.props.contract.methods.tokenURI(tokenId).call().then(uri => {
-                let convertedURI = this.gatewayTools.convertToDesiredGateway(uri, 'https://ravingcrabs.mypinata.cloud')
+                let convertedURI = this.gatewayTools.convertToDesiredGateway(uri, 'https://ipfs.io')
               let promise = fetch(convertedURI)
               .then(res => res.json())
               .then(data => {
-                img = this.gatewayTools.convertToDesiredGateway(data.image, 'https://ravingcrabs.mypinata.cloud')
-                animation_url = this.gatewayTools.convertToDesiredGateway(data.animation_url, 'https://ravingcrabs.mypinata.cloud')
+                img = this.gatewayTools.convertToDesiredGateway(data.image, 'https://ipfs.io')
+                animation_url = this.gatewayTools.convertToDesiredGateway(data.animation_url, 'https://ipfs.io')
                 name = data.name
                 properties = data.attributes
                 dna = data.dna
