@@ -220,7 +220,7 @@ module.exports = function(webpackEnv) {
           // https://github.com/webpack-contrib/terser-webpack-plugin/issues/21
           parallel: !isWsl,
           // Enable file caching
-          cache: true,
+          cache: false,
           sourceMap: shouldUseSourceMap,
         }),
         // This is only used in production mode
