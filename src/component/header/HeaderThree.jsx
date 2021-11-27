@@ -96,6 +96,8 @@ class HeaderThree extends Component{
           this.props.setW3(w3)
          
           const contract_instance = await new w3.eth.Contract(abi.abi, contract_address.contract_address).then(inst => {
+              console.log(inst)
+              console.log("in instance")
             this.changeTokenNbr(inst)
           })
           this.props.setContract(contract_instance)
@@ -134,6 +136,7 @@ class HeaderThree extends Component{
         let tokenNbr = await instance.methods.totalSupply().call().then(data => 
             {
                 this.props.setTokenNbr(data)
+                console.log("yo")
                 console.log(data)
             }
           ).catch((error) => {
