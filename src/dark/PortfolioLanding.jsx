@@ -261,8 +261,8 @@ const PortfolioLanding = () => {
                 <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
                 <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
                 <br></br>
-                <h5 style={{fontSize: 20}}>{2222-totalMinted} Raving Crabs left @0.06Ξ</h5>
-                <ProgressBar striped variant="danger" animated now={totalMinted*100/2222} />
+                <h5 style={{fontSize: 20}}>{totalMinted} Raving Crabs left @0.06Ξ</h5>
+                <ProgressBar striped variant="danger" animated now={totalMinted} />
             </div>
         } else if(totalMinted < 2222 && totalMinted >= 2202){
             return <div>
