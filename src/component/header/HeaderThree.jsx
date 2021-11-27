@@ -99,8 +99,8 @@ class HeaderThree extends Component{
           this.props.setContract(contract_instance)
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           this.props.chain(chainId)
-          let tokenNbr = await contract_instance.methods.totalSupply().call()
-          this.props.setTokenNbr(tokenNbr)
+          let tokenNbr = await contract_instance.methods.totalSupply().call().then(data => this.props.setTokenNbr(data)
+          )
 
 
           if(chainId !== '0x1'){
