@@ -95,11 +95,8 @@ class HeaderThree extends Component{
           let w3 = new Web3(window.ethereum)
           this.props.setW3(w3)
          
-          const contract_instance = await new w3.eth.Contract(abi.abi, contract_address.contract_address).then(inst => {
-              console.log(inst)
-              console.log("in instance")
-            this.changeTokenNbr(inst)
-          })
+          const contract_instance = await new w3.eth.Contract(abi.abi, contract_address.contract_address)
+            this.changeTokenNbr(contract_instance)
           this.props.setContract(contract_instance)
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           this.props.chain(chainId)
@@ -180,25 +177,6 @@ class HeaderThree extends Component{
 
   
       connect = () => {
-          if(this.state.providerDetected){
-              window.ethereum
-              .request({ method: 'eth_requestAccounts' })
-              .then((value) => {
-                  this.handleAccountsChanged(value);
-              })
-              .catch((err) => {
-                  if (err.code === 4001) {
-                  // EIP-1193 userRejectedRequest error
-                  // If this happens, the user rejected the connection request.
-                  console.log('Please connect to MetaMask.');
-                  } else {
-                  console.error(err);
-                  }
-              });
-          } else {
-              console.log("Install Metamask.io")
-              this.handleClickOpen()
-          }
   
         }
   
