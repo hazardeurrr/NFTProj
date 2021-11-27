@@ -95,18 +95,13 @@ class HeaderThree extends Component{
           let w3 = new Web3(window.ethereum)
           this.props.setW3(w3)
          
-          const contract_instance = await new w3.eth.Contract(abi.abi, contract_address.contract_address)
+          const contract_instance = await new w3.eth.Contract(abi.abi, contract_address.contract_address).then(inst => {
+            this.changeTokenNbr(inst)
+          })
           this.props.setContract(contract_instance)
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           this.props.chain(chainId)
-          let tokenNbr = await contract_instance.methods.totalSupply().call().then(data => 
-            {
-                this.props.setTokenNbr(data)
-                console.log(data)
-            }
-          ).catch((error) => {
-            console.error(error);
-          });
+         
 
 
           if(chainId !== '0x1'){
@@ -133,6 +128,17 @@ class HeaderThree extends Component{
           // connected.
           window.ethereum.on('accountsChanged', this.handleAccountsChanged);
   
+      }
+
+      async changeTokenNbr(instance){
+        let tokenNbr = await instance.methods.totalSupply().call().then(data => 
+            {
+                this.props.setTokenNbr(data)
+                console.log(data)
+            }
+          ).catch((error) => {
+            console.error(error);
+          });
       }
   
       // For now, 'eth_accounts' will continue to always return an array
