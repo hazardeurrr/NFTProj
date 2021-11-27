@@ -255,14 +255,17 @@ const PortfolioLanding = () => {
 
 
     const displayMintsLeft = () => {
+        if(totalMinted === 0){
+            return <CircularProgress />
+        } else {
         if(totalMinted < 2202){
             return <div>
                 <h2 style={{fontSize: 35}}>You know how clubs work...</h2>
                 <h3 className="title" style={{color:'gray', fontSize: 25}}>The earlier you get in, the less you pay !</h3>
                 <p className="description">Grab one of the first 2222 Raving Crabs for only 0.06 ETH instead of 0.07 ETH !</p>
                 <br></br>
-                <h5 style={{fontSize: 20}}>{totalMinted} Raving Crabs left @0.06Ξ</h5>
-                <ProgressBar striped variant="danger" animated now={totalMinted} />
+                <h5 style={{fontSize: 20}}>{2222-totalMinted} Raving Crabs left @0.06Ξ</h5>
+                <ProgressBar striped variant="danger" animated now={totalMinted*100/2222} />
             </div>
         } else if(totalMinted < 2222 && totalMinted >= 2202){
             return <div>
@@ -285,6 +288,7 @@ const PortfolioLanding = () => {
                 <h5 style={{fontSize: 20}}>{6666-totalMinted} Crabs left @0.07Ξ</h5>
                 <ProgressBar striped variant="danger" animated now={totalMinted*100/6666} />
             </div>
+            }
         }
     }
 
