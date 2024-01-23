@@ -1,3 +1,12 @@
+![image](https://github.com/hazardeurrr/NFTProj/assets/72072713/41f48f0c-0081-46a3-90ab-b38baf3c8586)NFT Project "Raving Crabs"
+
+Website template to buy and see your collection. Not available nor supported anymore. You can still see the minted NFTs on Opensea or interact directly with the contract at 0xD8577b5D18Ff953B4249028847b68B6b693366c4 address with the ABI available.
+
+![image](https://github.com/hazardeurrr/NFTProj/assets/72072713/5f1bee90-e353-425b-9f8c-4bb2cc8a901f)
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
