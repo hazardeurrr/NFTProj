@@ -1,6 +1,12 @@
 NFT Project "Raving Crabs"
 
-Website template to buy and see your collection. Not available nor supported anymore. You can still see the minted NFTs on Opensea or interact directly with the contract at 0xD8577b5D18Ff953B4249028847b68B6b693366c4 address with the ABI available.
+
+
+https://github.com/hazardeurrr/NFTProj/assets/72072713/9eb7a961-92f8-4285-8451-5058d1d35dc4
+
+
+
+Website template to buy and see your collection. Not available nor supported anymore. You can still see the minted NFTs on Opensea or interact directly with the contract
 
 ![image](https://github.com/hazardeurrr/NFTProj/assets/72072713/5f1bee90-e353-425b-9f8c-4bb2cc8a901f)
 
